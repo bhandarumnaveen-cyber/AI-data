@@ -14777,6 +14777,7 @@
     "upstreamStatus": "Aukštupio būsena",
     "noResponse": "Nėra atsakymo",
     "egressIp": "Išėjimo IP",
+    "egressIpFamily": "IPv{version}",
     "headersAfter": "Antraštės po",
     "firstChunkAfter": "Pirmas gabalas po",
     "servedBy": "Teikia",

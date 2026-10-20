@@ -14777,6 +14777,7 @@
     "upstreamStatus": "Upstream-Status",
     "noResponse": "Keine Antwort",
     "egressIp": "Egress-IP",
+    "egressIpFamily": "IPv{version}",
     "headersAfter": "Header nach",
     "firstChunkAfter": "Erster Chunk danach",
     "servedBy": "Bedient durch",
