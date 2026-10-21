@@ -13,7 +13,7 @@
 
 # 🚀 OmniRoute — Ọnụ Ụzọ AI N'efu
 
-<img src="./docs/diagrams/readme-hero.svg" width="100%" alt="OmniRoute — Akwụsịla ide koodu. Ngwaọrụ AI ọ bụla → ndị na-eweta ọrụ 375 — ihe karịrị 150 n'efu — site n'otu endpoint. Claude Code, Codex, Cursor, Cline, Copilot & Antigravity gaa na Claude / GPT / Gemini N'EFU nwere nlọghachi akpaaka. Mkpakọ RTK + Caveman jikọtara ọnụ na-echekwa token 15–95% (~89% ná nkezi) — erutela oke ma ọlị. Ndị na-eweta AI 375 · ọkwa n'efu karịrị 150 · ihe dị ka token ijeri 1.62 n'efu kwa ọnwa · usoro ntụgharị 20 · $0 iji malite."/>
+<img src="./docs/diagrams/readme-hero.svg" width="100%" alt="OmniRoute — Akwụsịla ide koodu. Ngwaọrụ AI ọ bụla → ndị na-eweta ọrụ 376 — ihe karịrị 150 n'efu — site n'otu endpoint. Claude Code, Codex, Cursor, Cline, Copilot & Antigravity gaa na Claude / GPT / Gemini N'EFU nwere nlọghachi akpaaka. Mkpakọ RTK + Caveman jikọtara ọnụ na-echekwa token 15–95% (~89% ná nkezi) — erutela oke ma ọlị. Ndị na-eweta AI 376 · ọkwa n'efu karịrị 150 · ihe dị ka token ijeri 1.62 n'efu kwa ọnwa · usoro ntụgharị 20 · $0 iji malite."/>
 
 </div>
 
@@ -71,7 +71,7 @@
 
 |                                  |         v3.8.50          | **v3.8.51** |      `v3.8.53+`       |
 | -------------------------------- | :----------------------: | :---------: | :-------------------: |
-| 🌐 Ndị na-enye ọrụ               |           352            |   **358**   |          375          |
+| 🌐 Ndị na-enye ọrụ               |           352            |   **358**   |          376          |
 | 🧠 ID ụdị nkata pụrụ iche        |           1320           |  **1374**   |         1475          |
 | 🖼️ Àkwà mmiri ụdị mgbasa ozi     | 🆕 ọhụụ + ọdịyo + vidiyo |      ✓      |           ✓           |
 | 📡 Katalọgụ Radar efu            |      🆕 họrọ isonye      |      ✓      |           ✓           |
@@ -112,7 +112,7 @@
   <tr>
     <td align="right"><b>⚙️ Atụmatụ</b></td>
     <td align="center"><a href="#-combos--the-flagship">🎯 Ngwakọta</a></td>
-    <td align="center"><a href="#-375-ai-providers--153-catalog-marked-free">🌐 Ndị na-eweta ọrụ</a></td>
+    <td align="center"><a href="#-376-ai-providers--153-catalog-marked-free">🌐 Ndị na-eweta ọrụ</a></td>
     <td align="center"><a href="#-full-cli--a2a--mcp">🔌 CLI &amp; MCP</a></td>
   </tr>
   <tr>
@@ -248,7 +248,7 @@ curl http://localhost:20128/v1/chat/completions \
 
 </div>
 
-<img src="./docs/diagrams/promise-pillars.svg" width="100%" alt="Nkwa Ahụ — Otu ebe njedebe na ndị na-eweta ọrụ 375. Nlaghachi azụ akpaghị aka na-eme ka nzipụ arịrịọ gaa n'ihu mgbe ebe njedebe ọzọ dị mma ka dị. Ogidi isii: nlaghachi azụ siri ike n'etiti ndị na-eweta ọrụ 375 · nchekwa token ruru 95% n'ọrụ ndị tozuru etozu · $0 iji malite, nwere ọkwa efuru 150+ na ndị na-eweta ọrụ 52 na-enye ọrụ efuru ebighị ebi, ma ọ bụ ugboro ugboro ma ọ bụ na-enweghị igodo · njikọta CLI/agent 37 site n'otu nhazi · ndakọrịta OpenAI, Claude, Gemini na Responses API na /v1 · njikwa mmepụta gụnyere circuit breakers, nzuzo TLS, ngwaọrụ MCP 110, A2A, ebe nchekwa, ihe nchedo, nnwale ntụle na nkwupụta nnwale static 56,000+ n'ofe faịlụ nnwale 7,800+ a na-esochi."/>
+<img src="./docs/diagrams/promise-pillars.svg" width="100%" alt="Nkwa Ahụ — Otu ebe njedebe na ndị na-eweta ọrụ 376. Nlaghachi azụ akpaghị aka na-eme ka nzipụ arịrịọ gaa n'ihu mgbe ebe njedebe ọzọ dị mma ka dị. Ogidi isii: nlaghachi azụ siri ike n'etiti ndị na-eweta ọrụ 376 · nchekwa token ruru 95% n'ọrụ ndị tozuru etozu · $0 iji malite, nwere ọkwa efuru 150+ na ndị na-eweta ọrụ 52 na-enye ọrụ efuru ebighị ebi, ma ọ bụ ugboro ugboro ma ọ bụ na-enweghị igodo · njikọta CLI/agent 37 site n'otu nhazi · ndakọrịta OpenAI, Claude, Gemini na Responses API na /v1 · njikwa mmepụta gụnyere circuit breakers, nzuzo TLS, ngwaọrụ MCP 110, A2A, ebe nchekwa, ihe nchedo, nnwale ntụle na nkwupụta nnwale static 56,000+ n'ofe faịlụ nnwale 7,800+ a na-esochi."/>
 
 <br/>
 <br/>
@@ -508,7 +508,7 @@ Usoro **20** niile — gwakọta ma dakọtara ha na nzọụkwụ combo ọ b�
 
 </div>
 
-<img src="./docs/diagrams/comparison-table.svg" width="100%" alt="Ihe mere OmniRoute ji pụọ iche — ntụnyere atụmatụ e mere n'otu oge megide 9router, OpenRouter, CLIProxyAPI na LiteLLM n'ofe ikike 13. OmniRoute: ndị na-eweta ọrụ 375, ọkwa efu karịrị 150 etinyere n'ime ya, usoro ntụgharị ụzọ 20, mkpakọ token nwere injin 12, sava MCP etinyere n'ime ya nke nwere ngwaọrụ 110, protokolụ agent A2A, ebe nchekwa na-adịgide adịgide, ihe mgbochi nchekwa, ndị agent igwe ojii, nzuzo akara mkpịsịaka TLS, Desktop/Termux/PWA na mpaghara asụsụ UI 67. OmniRoute nwere ikikere MIT ma nwee ike ịnabata ya n'onwe gị. Ikike na ọnụọgụ nke ndị asọmpi nwere ike ịgbanwe; lee usoro nyocha e jikọtara."/>
+<img src="./docs/diagrams/comparison-table.svg" width="100%" alt="Ihe mere OmniRoute ji pụọ iche — ntụnyere atụmatụ e mere n'otu oge megide 9router, OpenRouter, CLIProxyAPI na LiteLLM n'ofe ikike 13. OmniRoute: ndị na-eweta ọrụ 376, ọkwa efu karịrị 150 etinyere n'ime ya, usoro ntụgharị ụzọ 20, mkpakọ token nwere injin 12, sava MCP etinyere n'ime ya nke nwere ngwaọrụ 110, protokolụ agent A2A, ebe nchekwa na-adịgide adịgide, ihe mgbochi nchekwa, ndị agent igwe ojii, nzuzo akara mkpịsịaka TLS, Desktop/Termux/PWA na mpaghara asụsụ UI 67. OmniRoute nwere ikikere MIT ma nwee ike ịnabata ya n'onwe gị. Ikike na ọnụọgụ nke ndị asọmpi nwere ike ịgbanwe; lee usoro nyocha e jikọtara."/>
 
 <sub>📊 Usoro nyocha zuru ezu &amp; nkọwa atụmatụ nke ọ bụla megide 9router, OpenRouter, CLIProxyAPI &amp; LiteLLM → [`docs/comparison/OMNIROUTE_VS_ALTERNATIVES.md`](docs/comparison/OMNIROUTE_VS_ALTERNATIVES.md)</sub>
 
@@ -603,7 +603,7 @@ A na-ahọrọ iji Radar n'onwe gị, ọ na-ejikwa naanị GET. Klayentị Omni
 - **🖼️ Endpoint ọhụrụ** — `/v1/ocr` (Mistral OCR) na `/v1/audio/translations` (ụdị Whisper) na-emejupụta akụkụ media. → [Ntụaka API](docs/reference/API_REFERENCE.md)
 - **🎨 Mmepụta onyonyo / vidio / ọdịyo** — otu API maka media: xAI Grok Imagine & Novita AI video, ComfyUI, Magnific, Adobe Firefly, Segmind, na provider okwu dịka ElevenLabs. → [Ntụaka API](docs/reference/API_REFERENCE.md)
 - **🌍 Deployment na ops** — reverse-proxy `basePath`, nchọpụta akpaaka nke asụsụ browser, nsuso ngwaọrụ maka key ọ bụla, ntụkwasị obi MITM na-enweghị root, na localization zh-TW. → [Environment](docs/reference/ENVIRONMENT.md)
-- **🤝 Provider na agent ndị ọzọ** — cloud agent (Codex Cloud, Cursor, Devin, Jules), Grok Build (xAI) nwere browser + nbanye OAuth, card Ollama nke ọkwa mbụ, Claude Opus 5 & Sonnet 5, mmekorita Kimi gọọmentị (Code/Web/Moonshot), Zed, Requesty, SenseNova, Yuanbao, Agnes AI… yana **catalog provider 375** emelitere. → [Provider](docs/reference/PROVIDER_REFERENCE.md)
+- **🤝 Provider na agent ndị ọzọ** — cloud agent (Codex Cloud, Cursor, Devin, Jules), Grok Build (xAI) nwere browser + nbanye OAuth, card Ollama nke ọkwa mbụ, Claude Opus 5 & Sonnet 5, mmekorita Kimi gọọmentị (Code/Web/Moonshot), Zed, Requesty, SenseNova, Yuanbao, Agnes AI… yana **catalog provider 376** emelitere. → [Provider](docs/reference/PROVIDER_REFERENCE.md)
 - **📡 Nghọta doro anya banyere routing** — nzaghachi ọ bụla nwere header `X-OmniRoute-Decision` nke na-akpọ atụmatụ/provider/latency nyere ya ọrụ; atụmatụ combo ọhụrụ `cache-optimized` + factor Auto-Combo `cacheAffinity` na-ezighachi arịrịọ ugboro ugboro na connection nwere prefix echekwara na cache; endpoint naanị-agụ `/v1/auto-combo/{channel}/candidates` na-egosikwa ìgwè candidate dị ndụ nke channel `auto/*`. → [Auto-Combo](docs/routing/AUTO-COMBO.md)
 - **⚡ Arụmọrụ mpaghara & akụrụngwa** — Redis mpaghara eji otu ọpịpị arụ ọrụ, ndị mbunye relay Cloudflare Workers / Deno Deploy, yana Bifrost & Mux dị ka ọrụ agbakwunyere a na-elekọta. → [Ọrụ Agbakwunyere](docs/frameworks/EMBEDDED-SERVICES.md)
 - **🧩 Ihe ndị ọzọ dị n'ime ngwugwu ahụ** — usoro plugin + ahịa ya, usoro nka Omni/Agent/GitHub, njikọta vault Obsidian (ngwaọrụ MCP 22), API Batch & Files dakọtara na OpenAI, ebe nchekwa nzaghachi semantic, egwuregwu nwere tebụl ndị ndu, nchọpụta agent ACP (agent 15 arụnyere n'ime ya), mbupụ ndekọ ahaziri oge gaa na BigQuery, mgbasa ọtụtụ model yiri ibe ya nke `auto/chaos`, àkwà mmiri bot Telegram, onye njikwa ụdịdị dị n'ime ngwa yana ọkwa ndị na-eweta ọrụ efu nke LMArena-ELO. → [Dọkụmentị](docs/README.md)
@@ -687,11 +687,11 @@ na-egosi env/args kpọmkwem tupu emezuo ha, ebe `--api-key-env NAME` na-eme ka 
 
 <div align="center">
 
-## 🌐 Ndị Na-enye AI 375 — 153 Akara ha na Katalọgụ dị ka Efughị Ego
+## 🌐 Ndị Na-enye AI 376 — 153 Akara ha na Katalọgụ dị ka Efughị Ego
 
 </div>
 
-> **Ndị na-enye ọrụ 375 e debanyere aha** n'ofe nchịkọta nkata, mgbasa ozi, ọchụchọ, nke mpaghara, ndị nnọchi anya igwe ojii na sistemụ ndị bụ isi, gụnyere **153 nwere metadata nchọpụta `hasFree: true`**. Ndebanye ụdịdị nkata ahụ gụnyere **ndị na-enye ọrụ 239 / njikọ pụrụ iche 3,059 nke onye na-enye ọrụ na ụdịdị / NJ ụdịdị izizi 1,475**; katalọgụ mmefu efughị ego dị iche nwere **ahịrị 467 maka ụdịdị ọ bụla**, **otu ego mmefu na-emegharị ugboro 34** na **ndị na-enye ọrụ efughị ego ruo mgbe ebighị ebi 52, nke na-emegharị ugboro/na-achọghị igodo**. Ndị a bụ ọnụ ọgụgụ ntọala dị iche iche dịka e siri hazie ha; nkọwa na mgbakọ e wepụrụ mmegharị otu ego dị na [Ntụaka Ndị Na-enye Ọrụ](docs/reference/PROVIDER_REFERENCE.md) na [Ọkwa Efughị Ego](docs/reference/FREE_TIERS.md).
+> **Ndị na-enye ọrụ 376 e debanyere aha** n'ofe nchịkọta nkata, mgbasa ozi, ọchụchọ, nke mpaghara, ndị nnọchi anya igwe ojii na sistemụ ndị bụ isi, gụnyere **153 nwere metadata nchọpụta `hasFree: true`**. Ndebanye ụdịdị nkata ahụ gụnyere **ndị na-enye ọrụ 239 / njikọ pụrụ iche 3,059 nke onye na-enye ọrụ na ụdịdị / NJ ụdịdị izizi 1,475**; katalọgụ mmefu efughị ego dị iche nwere **ahịrị 467 maka ụdịdị ọ bụla**, **otu ego mmefu na-emegharị ugboro 34** na **ndị na-enye ọrụ efughị ego ruo mgbe ebighị ebi 52, nke na-emegharị ugboro/na-achọghị igodo**. Ndị a bụ ọnụ ọgụgụ ntọala dị iche iche dịka e siri hazie ha; nkọwa na mgbakọ e wepụrụ mmegharị otu ego dị na [Ntụaka Ndị Na-enye Ọrụ](docs/reference/PROVIDER_REFERENCE.md) na [Ọkwa Efughị Ego](docs/reference/FREE_TIERS.md).
 
 <div align="center">
 

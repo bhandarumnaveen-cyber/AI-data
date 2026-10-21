@@ -13,7 +13,7 @@
 
 # 🚀 OmniRoute — ነፃው የAI መግቢያ
 
-<img src="./docs/diagrams/readme-hero.svg" width="100%" alt="OmniRoute — ኮድ መጻፍዎን ፈጽሞ አያቁሙ። እያንዳንዱ የAI መሣሪያ → 375 አቅራቢዎች — 150+ ነፃ — በአንድ የመጨረሻ ነጥብ በኩል። Claude Code፣ Codex፣ Cursor፣ Cline፣ Copilot እና Antigravity ከራስ-ሰር አማራጭ ሽግግር ጋር ወደ ነፃ Claude / GPT / Gemini። RTK + Caveman የተደራረበ መጭመቂያ 15–95% ቶከኖችን (~89% በአማካይ) ይቆጥባል — ገደቦች ላይ ፈጽሞ አይድረሱ። 375 የAI አቅራቢዎች · 150+ ነፃ ደረጃዎች · በወር ~1.62B ነፃ ቶከኖች · 20 የማስተላለፊያ ስልቶች · ለመጀመር $0።"/>
+<img src="./docs/diagrams/readme-hero.svg" width="100%" alt="OmniRoute — ኮድ መጻፍዎን ፈጽሞ አያቁሙ። እያንዳንዱ የAI መሣሪያ → 376 አቅራቢዎች — 150+ ነፃ — በአንድ የመጨረሻ ነጥብ በኩል። Claude Code፣ Codex፣ Cursor፣ Cline፣ Copilot እና Antigravity ከራስ-ሰር አማራጭ ሽግግር ጋር ወደ ነፃ Claude / GPT / Gemini። RTK + Caveman የተደራረበ መጭመቂያ 15–95% ቶከኖችን (~89% በአማካይ) ይቆጥባል — ገደቦች ላይ ፈጽሞ አይድረሱ። 376 የAI አቅራቢዎች · 150+ ነፃ ደረጃዎች · በወር ~1.62B ነፃ ቶከኖች · 20 የማስተላለፊያ ስልቶች · ለመጀመር $0።"/>
 
 </div>
 
@@ -71,7 +71,7 @@
 
 |                          |      v3.8.50       | **v3.8.51** |      `v3.8.53+`       |
 | ------------------------ | :----------------: | :---------: | :-------------------: |
-| 🌐 አቅራቢዎች                |        352         |   **358**   |          375          |
+| 🌐 አቅራቢዎች                |        352         |   **358**   |          376          |
 | 🧠 ልዩ የውይይት ሞዴል IDs      |        1320        |  **1374**   |         1475          |
 | 🖼️ የሞዳሊቲ ድልድይ            | 🆕 ምስል + ድምፅ + ቪዲዮ |      ✓      |           ✓           |
 | 📡 የRadar ነፃ ካታሎግ        |    🆕 በምርጫ የሚነቃ    |      ✓      |           ✓           |
@@ -112,7 +112,7 @@
   <tr>
     <td align="right"><b>⚙️ ባህሪያት</b></td>
     <td align="center"><a href="#-combos--the-flagship">🎯 ጥምረቶች</a></td>
-    <td align="center"><a href="#-375-ai-providers--153-catalog-marked-free">🌐 አቅራቢዎች</a></td>
+    <td align="center"><a href="#-376-ai-providers--153-catalog-marked-free">🌐 አቅራቢዎች</a></td>
     <td align="center"><a href="#-full-cli--a2a--mcp">🔌 CLI &amp; MCP</a></td>
   </tr>
   <tr>
@@ -248,7 +248,7 @@ curl http://localhost:20128/v1/chat/completions \
 
 </div>
 
-<img src="./docs/diagrams/promise-pillars.svg" width="100%" alt="ቃል ኪዳኑ — አንድ የመዳረሻ ነጥብ እና 375 አቅራቢዎች። ሌላ ጤናማ መዳረሻ እስካለ ድረስ ራስ-ሰር ተለዋጭ መንገድ ማስተላለፉን ይቀጥላል። ስድስት ምሰሶዎች፦ በ375 አቅራቢዎች መካከል ጠንካራ ተለዋጭ መንገድ · ብቁ በሆኑ የሥራ ጫናዎች ላይ እስከ 95% የቶከን ቁጠባ · በ150+ ነፃ ደረጃዎች እና 52 ተደጋጋሚ/ቁልፍ-አልባ ለዘላለም ነፃ አቅራቢዎች በ$0 መጀመር · በአንድ ውቅር 37 የCLI/ወኪል ውህደቶች · የOpenAI, Claude, Gemini እና Responses API ተኳሃኝነት በ/v1 · የሰርኪት ብሬከሮችን፣ TLS ስውርነትን፣ MCP 110 መሣሪያዎችን፣ A2Aን፣ ማህደረ ትውስታን፣ መከላከያዎችን፣ ግምገማዎችን እና በ7,800+ ክትትል በሚደረግባቸው የሙከራ ፋይሎች ውስጥ 56,000+ የማይለዋወጡ የሙከራ መግለጫዎችን ያካተቱ የምርት አካባቢ መቆጣጠሪያዎች።"/>
+<img src="./docs/diagrams/promise-pillars.svg" width="100%" alt="ቃል ኪዳኑ — አንድ የመዳረሻ ነጥብ እና 376 አቅራቢዎች። ሌላ ጤናማ መዳረሻ እስካለ ድረስ ራስ-ሰር ተለዋጭ መንገድ ማስተላለፉን ይቀጥላል። ስድስት ምሰሶዎች፦ በ376 አቅራቢዎች መካከል ጠንካራ ተለዋጭ መንገድ · ብቁ በሆኑ የሥራ ጫናዎች ላይ እስከ 95% የቶከን ቁጠባ · በ150+ ነፃ ደረጃዎች እና 52 ተደጋጋሚ/ቁልፍ-አልባ ለዘላለም ነፃ አቅራቢዎች በ$0 መጀመር · በአንድ ውቅር 37 የCLI/ወኪል ውህደቶች · የOpenAI, Claude, Gemini እና Responses API ተኳሃኝነት በ/v1 · የሰርኪት ብሬከሮችን፣ TLS ስውርነትን፣ MCP 110 መሣሪያዎችን፣ A2Aን፣ ማህደረ ትውስታን፣ መከላከያዎችን፣ ግምገማዎችን እና በ7,800+ ክትትል በሚደረግባቸው የሙከራ ፋይሎች ውስጥ 56,000+ የማይለዋወጡ የሙከራ መግለጫዎችን ያካተቱ የምርት አካባቢ መቆጣጠሪያዎች።"/>
 
 <br/>
 <br/>
@@ -508,7 +508,7 @@ curl http://localhost:20128/v1/chat/completions \
 
 </div>
 
-<img src="./docs/diagrams/comparison-table.svg" width="100%" alt="OmniRouteን ልዩ የሚያደርገው — ከ9router፣ OpenRouter፣ CLIProxyAPI እና LiteLLM ጋር በ13 ችሎታዎች ላይ የተደረገ ቀን ያለው የባህሪያት ቅጽበታዊ ንጽጽር። OmniRoute፦ 375 አቅራቢዎች፣ 150+ አብሮገነብ ነጻ ደረጃዎች፣ 20 የማዘዋወሪያ ስልቶች፣ ባለ12-ሞተር የቶከን ማመቂያ፣ 110 መሣሪያዎች ያሉት አብሮገነብ MCP አገልጋይ፣ A2A የወኪል ፕሮቶኮል፣ ቋሚ ማህደረ ትውስታ፣ መከላከያ ገደቦች፣ የደመና ወኪሎች፣ ድብቅ የTLS አሻራ፣ Desktop/Termux/PWA እና 67 የi18n UI አካባቢያዊ ቋንቋዎች። OmniRoute በMIT ፈቃድ የተሰጠ እና በራስ ማስተናገድ የሚቻል ነው። የተፎካካሪዎች ችሎታዎችና ቁጥሮች ሊለወጡ ይችላሉ፤ የተገናኘውን ዘዴ ይመልከቱ።"/>
+<img src="./docs/diagrams/comparison-table.svg" width="100%" alt="OmniRouteን ልዩ የሚያደርገው — ከ9router፣ OpenRouter፣ CLIProxyAPI እና LiteLLM ጋር በ13 ችሎታዎች ላይ የተደረገ ቀን ያለው የባህሪያት ቅጽበታዊ ንጽጽር። OmniRoute፦ 376 አቅራቢዎች፣ 150+ አብሮገነብ ነጻ ደረጃዎች፣ 20 የማዘዋወሪያ ስልቶች፣ ባለ12-ሞተር የቶከን ማመቂያ፣ 110 መሣሪያዎች ያሉት አብሮገነብ MCP አገልጋይ፣ A2A የወኪል ፕሮቶኮል፣ ቋሚ ማህደረ ትውስታ፣ መከላከያ ገደቦች፣ የደመና ወኪሎች፣ ድብቅ የTLS አሻራ፣ Desktop/Termux/PWA እና 67 የi18n UI አካባቢያዊ ቋንቋዎች። OmniRoute በMIT ፈቃድ የተሰጠ እና በራስ ማስተናገድ የሚቻል ነው። የተፎካካሪዎች ችሎታዎችና ቁጥሮች ሊለወጡ ይችላሉ፤ የተገናኘውን ዘዴ ይመልከቱ።"/>
 
 <sub>📊 ሙሉ ዘዴውና የእያንዳንዱ ባህሪ ዝርዝር ከ9router፣ OpenRouter፣ CLIProxyAPI እና LiteLLM ጋር → [`docs/comparison/OMNIROUTE_VS_ALTERNATIVES.md`](docs/comparison/OMNIROUTE_VS_ALTERNATIVES.md)</sub>
 
@@ -603,7 +603,7 @@ Radar በምርጫ የሚነቃ ሲሆን GET ጥያቄዎችን ብቻ ይጠ�
 - **🖼️ አዲስ መጨረሻ ነጥቦች** — `/v1/ocr` (Mistral OCR) እና `/v1/audio/translations` (Whisper-style) የሚዲያ አገልግሎቱን ያሟላሉ። → [የAPI ማጣቀሻ](docs/reference/API_REFERENCE.md)
 - **🎨 ምስል / ቪዲዮ / ድምፅ ማመንጨት** — ለሚዲያ አንድ API፦ xAI Grok Imagine & Novita AI video፣ ComfyUI፣ Magnific፣ Adobe Firefly፣ Segmind፣ እና እንደ ElevenLabs ያሉ የንግግር አቅራቢዎች። → [የAPI ማጣቀሻ](docs/reference/API_REFERENCE.md)
 - **🌍 ማሰማራት እና ክወናዎች** — reverse-proxy `basePath`፣ የአሳሽ ቋንቋን በራስ-ሰር መለየት፣ በቁልፍ የተከፋፈለ የመሣሪያ ክትትል፣ root-አልባ የMITM መተማመኛ፣ zh-TW አካባቢያዊነት። → [አካባቢ](docs/reference/ENVIRONMENT.md)
-- **🤝 ተጨማሪ አቅራቢዎች እና ወኪሎች** — የደመና ወኪሎች (Codex Cloud, Cursor, Devin, Jules)፣ Grok Build (xAI) ከአሳሽ + OAuth መግቢያ ጋር፣ ቀዳሚ ደረጃ ያለው የOllama ካርድ፣ Claude Opus 5 & Sonnet 5፣ ኦፊሴላዊ የKimi አጋርነት (Code/Web/Moonshot)፣ Zed፣ Requesty፣ SenseNova፣ Yuanbao፣ Agnes AI… እና የታደሰ **375-አቅራቢዎች ካታሎግ**። → [አቅራቢዎች](docs/reference/PROVIDER_REFERENCE.md)
+- **🤝 ተጨማሪ አቅራቢዎች እና ወኪሎች** — የደመና ወኪሎች (Codex Cloud, Cursor, Devin, Jules)፣ Grok Build (xAI) ከአሳሽ + OAuth መግቢያ ጋር፣ ቀዳሚ ደረጃ ያለው የOllama ካርድ፣ Claude Opus 5 & Sonnet 5፣ ኦፊሴላዊ የKimi አጋርነት (Code/Web/Moonshot)፣ Zed፣ Requesty፣ SenseNova፣ Yuanbao፣ Agnes AI… እና የታደሰ **376-አቅራቢዎች ካታሎግ**። → [አቅራቢዎች](docs/reference/PROVIDER_REFERENCE.md)
 - **📡 የማዘዋወር ግልጽነት** — እያንዳንዱ ምላሽ ያገለገለውን ስልት/አቅራቢ/መዘግየት የሚጠቅስ የ`X-OmniRoute-Decision` ራስጌ ይይዛል፤ አዲሱ `cache-optimized` የኮምቦ ስልት + የAuto-Combo `cacheAffinity` ምክንያት ተደጋጋሚ ጥያቄዎችን የተሸጎጠውን ቅድመ ክፍል ወደያዘው ግንኙነት መልሰው ያዘዋውራሉ፤ እና ለንባብ ብቻ የሆነው `/v1/auto-combo/{channel}/candidates` መጨረሻ ነጥብ የ`auto/*` ቻናልን ቀጥታ የእጩዎች ስብስብ ያሳያል። → [ራስ-ሰር ኮምቦ](docs/routing/AUTO-COMBO.md)
 - **⚡ አካባቢያዊ አፈጻጸም እና መሠረተ ልማት** — በአንድ ጠቅታ የሚዘጋጅ አካባቢያዊ Redis፣ Cloudflare Workers / Deno Deploy ማስተላለፊያ አሰማሪዎች፣ እንዲሁም Bifrost እና Mux እንደ ክትትል የሚደረግባቸው የተካተቱ አገልግሎቶች። → [የተካተቱ አገልግሎቶች](docs/frameworks/EMBEDDED-SERVICES.md)
 - **🧩 በጥቅሉ ውስጥ የተካተቱ ሌሎች ነገሮች** — የፕለጊን ማዕቀፍ + የገበያ ቦታ፣ Omni/Agent/GitHub የክህሎት ማዕቀፎች፣ የObsidian ማከማቻ ውህደት (22 MCP መሣሪያዎች)፣ ከOpenAI ጋር ተኳሃኝ የBatch እና Files APIዎች፣ የፍቺ ምላሽ መሸጎጫ፣ የውጤት ሰንጠረዦች ያሉት ጨዋታዊ ሥርዓት፣ የACP ወኪል ፍለጋ (15 አብረው የተካተቱ ወኪሎች)፣ የጊዜ ሰሌዳ የተዘጋጀለት የምዝግብ ማስታወሻ ወደ BigQuery መላክ፣ `auto/chaos` ትይዩ ባለብዙ ሞዴል ማሰራጨት፣ የTelegram ቦት ድልድይ፣ በመተግበሪያው ውስጥ ያለ የስሪት አስተዳዳሪ እና የLMArena-ELO ነፃ አቅራቢዎች ደረጃ አሰጣጥ። → [ሰነዶች](docs/README.md)
@@ -687,11 +687,11 @@ omniroute configure codex          # እነዚህም አሉ፦ claude opencode q
 
 <div align="center">
 
-## 🌐 375 የAI አቅራቢዎች — 153ቱ በካታሎግ ነፃ ተብለው የተመለከቱ
+## 🌐 376 የAI አቅራቢዎች — 153ቱ በካታሎግ ነፃ ተብለው የተመለከቱ
 
 </div>
 
-> **375 የተመዘገቡ አቅራቢዎች** በመደበኛዎቹ የውይይት፣ የሚዲያ፣ የፍለጋ፣ የአካባቢ፣ የደመና-ወኪል እና የስርዓት ስብስቦች ውስጥ ይገኛሉ፤ ከእነዚህም **153ቱ `hasFree: true` የማግኛ ሜታዳታ ይዘዋል**። የውይይት ሞዴል መዝገቡ **239 አቅራቢዎችን / 3,059 ልዩ የአቅራቢ-ሞዴል ጥንዶችን / 1,475 ጥሬ የሞዴል IDዎችን** ይሸፍናል፤ የተለየው የነፃ-በጀት ካታሎግ ደግሞ **467 በሞዴል የተደራጁ ረድፎችን**፣ **34 ተደጋጋሚ ማከማቻዎችን** እና **52 ተደጋጋሚ/ቁልፍ-አልባ ለዘላለም ነፃ አቅራቢዎችን** ይዟል። እነዚህ በንድፍ የተለያዩ መነሻ ጠቅላላዎች ናቸው፤ ትርጓሜዎቹ እና ተደጋጋሚ ማከማቻዎችን ያስወገዱ ስሌቶች በ[የአቅራቢዎች ማጣቀሻ](docs/reference/PROVIDER_REFERENCE.md) እና [ነፃ ደረጃዎች](docs/reference/FREE_TIERS.md) ውስጥ ይገኛሉ።
+> **376 የተመዘገቡ አቅራቢዎች** በመደበኛዎቹ የውይይት፣ የሚዲያ፣ የፍለጋ፣ የአካባቢ፣ የደመና-ወኪል እና የስርዓት ስብስቦች ውስጥ ይገኛሉ፤ ከእነዚህም **153ቱ `hasFree: true` የማግኛ ሜታዳታ ይዘዋል**። የውይይት ሞዴል መዝገቡ **239 አቅራቢዎችን / 3,059 ልዩ የአቅራቢ-ሞዴል ጥንዶችን / 1,475 ጥሬ የሞዴል IDዎችን** ይሸፍናል፤ የተለየው የነፃ-በጀት ካታሎግ ደግሞ **467 በሞዴል የተደራጁ ረድፎችን**፣ **34 ተደጋጋሚ ማከማቻዎችን** እና **52 ተደጋጋሚ/ቁልፍ-አልባ ለዘላለም ነፃ አቅራቢዎችን** ይዟል። እነዚህ በንድፍ የተለያዩ መነሻ ጠቅላላዎች ናቸው፤ ትርጓሜዎቹ እና ተደጋጋሚ ማከማቻዎችን ያስወገዱ ስሌቶች በ[የአቅራቢዎች ማጣቀሻ](docs/reference/PROVIDER_REFERENCE.md) እና [ነፃ ደረጃዎች](docs/reference/FREE_TIERS.md) ውስጥ ይገኛሉ።
 
 <div align="center">
 
