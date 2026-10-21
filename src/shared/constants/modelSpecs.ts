@@ -93,6 +93,7 @@ const AUTHORITATIVE_CONTEXT_WINDOW_MODEL_IDS = new Set([
   "glm-5.2",
   "glm-5.2-high",
   "glm-5.2-max",
+  "grok-4.7",
 ]);
 const AUTHORITATIVE_PROVIDER_CONTEXT_WINDOWS = new Map<string, number>([
   ["cloudflare-ai/@cf/zai-org/glm-5.2", 262144],
@@ -115,7 +116,19 @@ const AUTHORITATIVE_PROVIDER_CONTEXT_WINDOWS = new Map<string, number>([
   ["opencode/mimo-v2.6-flash-free", 1048576],
   ["opencode-zen/mimo-v2.6-flash-free", 1048576],
   ["opencode-go/mimo-v2.6-flash-free", 1048576],
+  ["cursor/grok-4.7", 500000],
+  ["cursor-api/grok-4.7", 500000],
+  ["cua/grok-4.7", 500000],
+  ["xai/grok-4.7", 500000],
 ]);
+
+const GROK_4_7_MODEL_SPEC = {
+  maxOutputTokens: 128000,
+  contextWindow: 500000,
+  supportsThinking: true,
+  supportsTools: true,
+  supportsVision: true,
+} satisfies ModelSpec;
 
 const GPT_5_6_MODEL_SPEC = {
   maxOutputTokens: 128000,
@@ -138,6 +151,10 @@ const GEMINI_36_FLASH_MODEL_SPEC = {
 } satisfies ModelSpec;
 
 export const MODEL_SPECS: Record<string, ModelSpec> = {
+  "grok-4.7": {
+    ...GROK_4_7_MODEL_SPEC,
+    aliases: ["cursor-api/grok-4.7", "cursor/grok-4.7", "cua/grok-4.7", "xai/grok-4.7"],
+  },
   // Public API limits; Codex's smaller window lives in its provider registry.
   "gpt-6.1-sol": {
     ...GPT_5_6_MODEL_SPEC,

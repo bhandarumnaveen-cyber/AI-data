@@ -9,6 +9,7 @@ export const deepseekProvider: RegistryEntry = {
   authType: "apikey",
   defaultContextLength: 1_000_000,
   authHeader: "bearer",
+  requiresReasoningContentEcho: true,
   alternateFormats: [
     {
       format: "openai-responses",

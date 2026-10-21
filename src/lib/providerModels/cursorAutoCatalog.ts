@@ -27,7 +27,7 @@ const CURSOR_AUTO_ROUTER_VARIANT_NAMES: Record<
 
 const CURSOR_ONE_MILLION_CONTEXT = 1_000_000;
 // Verified with grok-4.7 through AgentService/Run: each tier returned HTTP 200.
-const GROK_47_EFFORT_TIERS = ["low", "medium", "high", "xhigh", "max"] as const;
+const GROK_47_EFFORT_TIERS = ["low", "medium", "high", "xhigh"] as const;
 const CURSOR_CONTEXT_EFFORT = "(?:low|medium|high|xhigh|max)";
 const CURSOR_ONE_MILLION_MODEL_PATTERNS = [
   new RegExp(`^claude-fable-5-1-thinking-${CURSOR_CONTEXT_EFFORT}$`),
