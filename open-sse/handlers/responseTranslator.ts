@@ -767,6 +767,29 @@ function resolveReasoningText(messageObj: JsonRecord): string {
  * answered with application/json) reaches Claude Code with lowercase tool_use
  * names the CLI rejects as "No such tool available".
  */
+/**
+ * Parse an OpenAI tool call's `arguments` into the object Claude's `tool_use.input` needs.
+ * Empty, missing or null arguments are a zero-argument call and yield `{}`. A malformed
+ * payload (unparseable non-empty string, or JSON that is not an object) used to throw a raw
+ * JSON.parse error (or let a non-object through) out of the translator, which the caller
+ * classified as a provider outage; it now fails with a typed, request-scoped error that
+ * keeps the original cause for the logs.
+ */
+function parseToolCallArguments(rawArguments: unknown): Record<string, unknown> {
+  if (!rawArguments) return {};
+  let parsed: unknown = rawArguments;
+  if (typeof rawArguments === "string") {
+    try {
+      parsed = JSON.parse(rawArguments);
+    } catch (cause) {
+      throw new SyntaxError("Tool-call arguments must be a JSON object", { cause });
+    }
+  }
+  if (!parsed || typeof parsed !== "object" || Array.isArray(parsed))
+    throw new SyntaxError("Tool-call arguments must be a JSON object");
+  return parsed as Record<string, unknown>;
+}
+
 function convertOpenAINonStreamingToClaude(
   openaiResponse: JsonRecord,
   toolNameMap?: Map<string, string> | null,
@@ -850,8 +873,7 @@ function convertOpenAINonStreamingToClaude(
         type: "tool_use",
         id: sanitizeToolId(rawId),
         name: restoreClaudeToolName(toString(fn.name), toolNameMap ?? null),
-        input:
-          typeof fn.arguments === "string" ? JSON.parse(fn.arguments || "{}") : fn.arguments || {},
+        input: parseToolCallArguments(fn.arguments),
       });
     }
   }
