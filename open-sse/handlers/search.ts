@@ -38,6 +38,7 @@ import * as xSearch from "./search/xSearch.ts";
 import * as xquikSearch from "./search/xquikSearch.ts";
 import * as anysearchSearch from "./search/anysearchSearch.ts";
 import * as parallelSearch from "./search/parallelSearch.ts";
+import * as deepseekSearch from "./search/deepseekSearch.ts";
 import { freeWebSearch } from "../services/freeWebSearch.ts";
 import { saveCallLog } from "@/lib/usageDb";
 import { safeOutboundFetch } from "@/shared/network/safeOutboundFetch";
@@ -776,6 +777,7 @@ const requestBuilders: Record<string, SearchRequestBuilder> = {
   "xquik-search": xquikSearch.buildXquikSearchRequest,
   "anysearch-search": anysearchSearch.buildAnysearchSearchRequest,
   "parallel-search": parallelSearch.buildParallelSearchRequest,
+  "deepseek-search": deepseekSearch.buildDeepSeekSearchRequest,
 };
 
 function buildRequest(
@@ -1407,6 +1409,7 @@ const responseNormalizers: Record<string, SearchResponseNormalizer> = {
   "xquik-search": (data) => xquikSearch.normalizeXquikSearchResponse(data, makeResult),
   "anysearch-search": (data) => anysearchSearch.normalizeAnysearchSearchResponse(data, makeResult),
   "parallel-search": (data) => parallelSearch.normalizeParallelSearchResponse(data, makeResult),
+  "deepseek-search": (data) => deepseekSearch.normalizeDeepSeekSearchResponse(data, makeResult),
 };
 
 function normalizeResponse(

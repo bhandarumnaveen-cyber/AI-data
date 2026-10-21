@@ -112,6 +112,7 @@ export function computeSearchCostUsd(
   requestBody: unknown,
   resultCount: number
 ): number {
+  if (config.chargeForEmptyResults === false && resultCount === 0) return 0;
   const byMode = config.costByMode;
   if (!byMode) return config.costPerQuery;
   let mode: unknown;
