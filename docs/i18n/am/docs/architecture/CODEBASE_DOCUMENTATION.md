@@ -288,7 +288,7 @@ v1/
 | `jobs/`           | የጀርባ ሥራዎች (`autoUpdate.ts`፣ …)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | `memory/`         | ቋሚ ማህደረ ትውስታ፦ `store.ts`፣ `cache.ts`፣ `retrieval.ts`፣ `summarization.ts`፣ `extraction.ts`፣ `injection.ts`፣ `qdrant.ts`፣ `settings.ts`፣ `verify.ts`፣ `schemas.ts`፣ `types.ts`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | `monitoring/`     | `observability.ts`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `oauth/`          | OAuth/የአቅራቢ ማስመጣት ሞጁሎች (22)፦ `agy`፣ `antigravity`፣ `claude`፣ `cline`፣ `codebuddy-cn`፣ `codex`፣ `cursor`፣ `devin-desktop`፣ `ghe-copilot`፣ `github`፣ `gitlab-duo`፣ `grok-cli-oauth`፣ `grok-cli`፣ `kilocode`፣ `kimi-coding`፣ `kiro`፣ `openference`፣ `qoder`፣ `trae`፣ `xai-oauth`፣ `zed-hosted`፣ `zed`፣ እንዲሁም `services/`፣ `utils/` እና `constants/oauth.ts`                                                                                                                                                                                                                                                                                                        |
+| `oauth/`          | OAuth/የአቅራቢ ማስመጣት ሞጁሎች (26)፦ `agy`፣ `antigravity`፣ `claude`፣ `cline`፣ `codebuddy-cn`፣ `codex`፣ `cursor`፣ `devin-desktop`፣ `ghe-copilot`፣ `github`፣ `gitlab-duo`፣ `grok-cli-oauth`፣ `grok-cli`፣ `kilocode`፣ `kimi-coding`፣ `kiro`፣ `minimax-code`፣ `openference`፣ `qoder`፣ `trae`፣ `xai-oauth`፣ `zed-hosted`፣ `zed`፣ እንዲሁም `services/`፣ `utils/` እና `constants/oauth.ts`                                                                                                                                                                                                                                                                                                        |
 | `plugins/`        | የፕለጊን ጫኚ (`index.ts`)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | `promptCache/`    | `prefixAnalyzer.ts`፣ `index.ts`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | `providerModels/` | የሚተዳደር የሞዴል የሕይወት ዑደት፦ `modelDiscovery.ts`፣ `managedModelImport.ts`፣ `managedAvailableModels.ts`፣ `cursorAgent.ts`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
@@ -446,7 +446,7 @@ open-sse/
 ├── types.d.ts
 ├── config/                 የአቅራቢ መዝገቦች፣ የራስጌ መገለጫዎች፣ ማንነት፣ …
 ├── handlers/               የጥያቄ ተቆጣጣሪዎች (ውይይት፣ embeddings፣ ድምፅ፣ ምስል፣ …)
-├── executors/              156 የአቅራቢ አስፈጻሚ ሞጁሎች (የአስፈጻሚ ክፍሎች + የእያንዳንዱ አቅራቢ አጋዥ ክፍሎች)
+├── executors/              158 የአቅራቢ አስፈጻሚ ሞጁሎች (የአስፈጻሚ ክፍሎች + የእያንዳንዱ አቅራቢ አጋዥ ክፍሎች)
 ├── translator/             የቅርጸት ልወጣ (OpenAI ↔ Claude ↔ Gemini ↔ Cursor ↔ Kiro)
 ├── transformer/            Responses API ↔ Chat Completions የዥረት ቀያሪ
 ├── services/               80+ የአገልግሎት ሞጁሎች (ጥምረቶች፣ ተተኪ፣ ኮታዎች፣ ማንነት፣ …)
@@ -476,7 +476,7 @@ open-sse/
 
 ### 4.2 `open-sse/executors/`
 
-156 ከፍተኛ ደረጃ የአስፈጻሚ ሞጁሎች (`*.ts`፣ `base.ts`፣ `index.ts` እና ሙከራዎችን ሳይጨምር — ብዛቱን
+158 ከፍተኛ ደረጃ የአስፈጻሚ ሞጁሎች (`*.ts`፣ `base.ts`፣ `index.ts` እና ሙከራዎችን ሳይጨምር — ብዛቱን
 `npm run check:docs-counts` ይለካል)። እያንዳንዱ የአስፈጻሚ ክፍል `BaseExecutor` (`base.ts`)ን፣
 በቀጥታ ወይም በ`DefaultExecutor` ወይም በሌላ አስፈጻሚ በኩል ይወርሳል፤ የቀሩት ሞጁሎች ለእያንዳንዱ አቅራቢ
 የተዘጋጁ አጋዥ ክፍሎች ናቸው (የመሣሪያ ንድፎች፣ fetch/TTS አስማሚዎች፣ ያልተለመዱ ባህሪያት ተቆጣጣሪዎች)። አስፈጻሚዎቹ የሚከተሉትን ያካትታሉ፦
@@ -488,7 +488,7 @@ open-sse/
 (የጋራ የማንነት አጋዥ) እና `index.ts` (መዝገብ)።
 
 > ማስታወሻ፦ እዚህ ያልተዘረዘሩ አቅራቢዎች አጠቃላይ
-> ከOpenAI ጋር ተኳኋኝ የሆነውን አስፈጻሚ በመጠቀም በ`default.ts` ይስተናገዳሉ። ሙሉው የአቅራቢዎች ካታሎግ (375 አቅራቢዎች) በ
+> ከOpenAI ጋር ተኳኋኝ የሆነውን አስፈጻሚ በመጠቀም በ`default.ts` ይስተናገዳሉ። ሙሉው የአቅራቢዎች ካታሎግ (376 አቅራቢዎች) በ
 > `src/shared/constants/providers.ts` ውስጥ ይገኛል።
 
 ### 4.3 `open-sse/translator/`

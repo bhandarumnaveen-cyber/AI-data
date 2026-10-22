@@ -15,13 +15,13 @@ U yagona OpenAI-mos keluvchi soʻnggi nuqtani (`/v1/*`) taqdim etadi hamda tarji
 
 Asosiy imkoniyatlar:
 
-- CLI/vositalar uchun OpenAI-mos keluvchi API interfeysi (375 ta provayder, 156 ta ijrochi modul)
+- CLI/vositalar uchun OpenAI-mos keluvchi API interfeysi (376 ta provayder, 158 ta ijrochi modul)
 - Provayder formatlari oʻrtasida soʻrov/javob tarjimasi
 - Modellar kombinatsiyasi boʻyicha zaxira variantiga oʻtish (koʻp modelli ketma-ketlik)
 - `compositeTiers` asosida bajarilish vaqtida tartiblanadigan tuzilmali kombinatsiya bosqichlari (`provider + model + connection`)
 - Hisob darajasida zaxira variantiga oʻtish (har bir provayder uchun bir nechta hisob)
 - Asosiy chat yoʻlida kvotani oldindan tekshirish va kvotani hisobga oluvchi P2C hisob tanlovi
-- OAuth + API kaliti orqali provayder ulanishlarini boshqarish (27 ta OAuth provayder moduli)
+- OAuth + API kaliti orqali provayder ulanishlarini boshqarish (28 ta OAuth provayder moduli)
 - `/v1/embeddings` orqali embedding yaratish (18 ta provayder)
 - `/v1/images/generations` orqali tasvir yaratish (10+ ta provayder, 20+ ta model)
 - `/v1/audio/transcriptions` orqali audio transkripsiyasi (18 ta provayder)
@@ -64,7 +64,7 @@ Asosiy imkoniyatlar:
 - Prompt kiritish hujumlaridan himoya qiluvchi oraliq dastur
 - Caveman, RTK, qatlamlangan konveyerlar, siqish kombinatsiyalari, til paketlari va tahlilga ega promptlarni siqish konveyeri
 - ACP (Agent Communication Protocol) reestri
-- Modulli OAuth provayderlari (`src/lib/oauth/providers/` ostidagi 22 ta alohida modul)
+- Modulli OAuth provayderlari (`src/lib/oauth/providers/` ostidagi 28 ta alohida modul)
 - Oʻchirish/toʻliq oʻchirish skriptlari
 - OAuth muhitini tiklash amali
 - OpenAI-mos keluvchi WS mijozlari uchun WebSocket koʻprigi (`/v1/ws`)
@@ -319,10 +319,10 @@ Domen qatlami modullari:
 - Baholashni ishga tushiruvchi modul: `src/lib/evals/evalRunner.ts`
 - Domen holatini doimiy saqlash: `src/lib/db/domainState.ts` — zaxira zanjirlari, byudjetlar, xarajatlar tarixi, bloklash holati va avtomatik uzgichlar uchun SQLite CRUD amallari
 
-OAuth provayderi modullari (`src/lib/oauth/providers/` ichidagi 27 ta alohida fayl):
+OAuth provayderi modullari (`src/lib/oauth/providers/` ichidagi 28 ta alohida fayl):
 
 - Reyestr indeksi: `src/lib/oauth/providers/index.ts`
-- Alohida provayderlar: `agy.ts`, `antigravity.ts`, `claude.ts`, `cline.ts`, `codebuddy-cn.ts`, `codebuddy-intl.ts`, `codex.ts`, `cursor.ts`, `devin-desktop.ts`, `ghe-copilot.ts`, `github.ts`, `gitlab-duo.ts`, `grok-cli-oauth.ts`, `grok-cli.ts`, `kilocode.ts`, `kimi-coding.ts`, `kiro.ts`, `muse-code.ts`, `openference.ts`, `qoder.ts`, `trae.ts`, `workbuddy.ts`, `xai-oauth.ts`, `zed-hosted.ts`, `zed.ts`
+- Alohida provayderlar: `agy.ts`, `antigravity.ts`, `claude.ts`, `cline.ts`, `codebuddy-cn.ts`, `codebuddy-intl.ts`, `codex.ts`, `cursor.ts`, `devin-desktop.ts`, `ghe-copilot.ts`, `github.ts`, `gitlab-duo.ts`, `grok-cli-oauth.ts`, `grok-cli.ts`, `kilocode.ts`, `kimi-coding.ts`, `kiro.ts`, `minimax-code.ts`, `muse-code.ts`, `openference.ts`, `qoder.ts`, `trae.ts`, `workbuddy.ts`, `xai-oauth.ts`, `zed-hosted.ts`, `zed.ts`
 - Umumiy yordamchi modullar: `codebuddyDeviceAuth.ts` (CodeBuddy CN/xalqaro qurilma oqimi), `museCodeDeviceResponse.ts`
 - Yupqa oʻrama: `src/lib/oauth/providers.ts` — alohida modullardan qayta eksport qiladi
 

@@ -289,7 +289,7 @@ v1/
 | `jobs/`           | משימות רקע (`autoUpdate.ts`, …)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | `memory/`         | זיכרון מתמיד: `store.ts`, `cache.ts`, `retrieval.ts`, `summarization.ts`, `extraction.ts`, `injection.ts`, `qdrant.ts`, `settings.ts`, `verify.ts`, `schemas.ts`, `types.ts`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | `monitoring/`     | `observability.ts`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| `oauth/`          | מודולים של ספקי OAuth/ייבוא (22): `agy`, `antigravity`, `claude`, `cline`, `codebuddy-cn`, `codex`, `cursor`, `devin-desktop`, `ghe-copilot`, `github`, `gitlab-duo`, `grok-cli-oauth`, `grok-cli`, `kilocode`, `kimi-coding`, `kiro`, `openference`, `qoder`, `trae`, `xai-oauth`, `zed-hosted`, `zed`, וכן `services/`, `utils/` ו-`constants/oauth.ts`                                                                                                                                                                                                                                                                                                          |
+| `oauth/`          | מודולים של ספקי OAuth/ייבוא (26): `agy`, `antigravity`, `claude`, `cline`, `codebuddy-cn`, `codex`, `cursor`, `devin-desktop`, `ghe-copilot`, `github`, `gitlab-duo`, `grok-cli-oauth`, `grok-cli`, `kilocode`, `kimi-coding`, `kiro`, `minimax-code`, `openference`, `qoder`, `trae`, `xai-oauth`, `zed-hosted`, `zed`, וכן `services/`, `utils/` ו-`constants/oauth.ts`                                                                                                                                                                                                                                                                                                          |
 | `plugins/`        | טוען תוספים (`index.ts`)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 | `promptCache/`    | `prefixAnalyzer.ts`, `index.ts`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | `providerModels/` | ניהול מחזור החיים של מודלים: `modelDiscovery.ts`, `managedModelImport.ts`, `managedAvailableModels.ts`, `cursorAgent.ts`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
@@ -447,7 +447,7 @@ open-sse/
 ├── types.d.ts
 ├── config/                 רישומי ספקים, פרופילי כותרות, זהות, …
 ├── handlers/               מטפלי בקשות (צ'אט, הטמעות, שמע, תמונה, …)
-├── executors/              156 מודולי הרצה של ספקים (מחלקות הרצה + כלי עזר לכל ספק)
+├── executors/              158 מודולי הרצה של ספקים (מחלקות הרצה + כלי עזר לכל ספק)
 ├── translator/             המרת פורמטים (OpenAI ↔ Claude ↔ Gemini ↔ Cursor ↔ Kiro)
 ├── transformer/            ממיר הזרמה של Responses API ↔ Chat Completions
 ├── services/               יותר מ-80 מודולי שירות (שילובים, גיבוי, מכסות, זהות, …)
@@ -477,7 +477,7 @@ open-sse/
 
 ### 4.2 `open-sse/executors/`
 
-156 מודולי הרצה ברמה העליונה (`*.ts` למעט `base.ts`,‏ `index.ts` ובדיקות — המספר
+158 מודולי הרצה ברמה העליונה (`*.ts` למעט `base.ts`,‏ `index.ts` ובדיקות — המספר
 נמדד באמצעות `npm run check:docs-counts`). כל מחלקת הרצה יורשת מ-`BaseExecutor` (`base.ts`),
 ישירות או דרך `DefaultExecutor` או מריץ אחר; המודולים הנותרים הם כלי עזר ייעודיים לכל ספק
 (סכמות כלים, מתאמי אחזור/TTS, מטפלים בהתנהגויות חריגות). המריצים כוללים:
@@ -489,7 +489,7 @@ open-sse/
 (כלי עזר משותף לזהות) ו-`index.ts` (רישום).
 
 > הערה: ספקים שאינם מופיעים כאן מקבלים שירות באמצעות `default.ts`, המשתמש במריץ הכללי
-> התואם ל-OpenAI. קטלוג הספקים המלא (375 ספקים) נמצא בתוך
+> התואם ל-OpenAI. קטלוג הספקים המלא (376 ספקים) נמצא בתוך
 > `src/shared/constants/providers.ts`.
 
 ### 4.3 `open-sse/translator/`

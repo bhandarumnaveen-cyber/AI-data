@@ -289,7 +289,7 @@ Route → การตรวจสอบ CORS ล่วงหน้า → ก�
 | `jobs/`           | งานเบื้องหลัง (`autoUpdate.ts`, …)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | `memory/`         | หน่วยความจำถาวร: `store.ts`, `cache.ts`, `retrieval.ts`, `summarization.ts`, `extraction.ts`, `injection.ts`, `qdrant.ts`, `settings.ts`, `verify.ts`, `schemas.ts`, `types.ts`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | `monitoring/`     | `observability.ts`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| `oauth/`          | โมดูล OAuth/การนำเข้าผู้ให้บริการ (22 รายการ): `agy`, `antigravity`, `claude`, `cline`, `codebuddy-cn`, `codex`, `cursor`, `devin-desktop`, `ghe-copilot`, `github`, `gitlab-duo`, `grok-cli-oauth`, `grok-cli`, `kilocode`, `kimi-coding`, `kiro`, `openference`, `qoder`, `trae`, `xai-oauth`, `zed-hosted`, `zed` รวมถึง `services/`, `utils/` และ `constants/oauth.ts`                                                                                                                                                                                                                                                                                               |
+| `oauth/`          | โมดูล OAuth/การนำเข้าผู้ให้บริการ (26 รายการ): `agy`, `antigravity`, `claude`, `cline`, `codebuddy-cn`, `codex`, `cursor`, `devin-desktop`, `ghe-copilot`, `github`, `gitlab-duo`, `grok-cli-oauth`, `grok-cli`, `kilocode`, `kimi-coding`, `kiro`, `minimax-code`, `openference`, `qoder`, `trae`, `xai-oauth`, `zed-hosted`, `zed` รวมถึง `services/`, `utils/` และ `constants/oauth.ts`                                                                                                                                                                                                                                                                                               |
 | `plugins/`        | ตัวโหลดปลั๊กอิน (`index.ts`)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | `promptCache/`    | `prefixAnalyzer.ts`, `index.ts`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | `providerModels/` | วงจรชีวิตโมเดลที่มีการจัดการ: `modelDiscovery.ts`, `managedModelImport.ts`, `managedAvailableModels.ts`, `cursorAgent.ts`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
@@ -447,7 +447,7 @@ open-sse/
 ├── types.d.ts
 ├── config/                 รีจิสทรีผู้ให้บริการ, โปรไฟล์ส่วนหัว, ข้อมูลระบุตัวตน, …
 ├── handlers/               ตัวจัดการคำขอ (แชต, embedding, เสียง, รูปภาพ, …)
-├── executors/              โมดูล executor สำหรับผู้ให้บริการ 156 โมดูล (คลาส executor + ตัวช่วยเฉพาะผู้ให้บริการ)
+├── executors/              โมดูล executor สำหรับผู้ให้บริการ 158 โมดูล (คลาส executor + ตัวช่วยเฉพาะผู้ให้บริการ)
 ├── translator/             การแปลงรูปแบบ (OpenAI ↔ Claude ↔ Gemini ↔ Cursor ↔ Kiro)
 ├── transformer/            transformer สำหรับสตรีม Responses API ↔ Chat Completions
 ├── services/               โมดูล service มากกว่า 80 โมดูล (คอมโบ, fallback, โควตา, ข้อมูลระบุตัวตน, …)
@@ -477,7 +477,7 @@ open-sse/
 
 ### 4.2 `open-sse/executors/`
 
-มีโมดูล executor ระดับบนสุด 156 โมดูล (`*.ts` โดยไม่นับ `base.ts`, `index.ts` และการทดสอบ — จำนวนนี้
+มีโมดูล executor ระดับบนสุด 158 โมดูล (`*.ts` โดยไม่นับ `base.ts`, `index.ts` และการทดสอบ — จำนวนนี้
 วัดโดย `npm run check:docs-counts`) คลาส executor ทุกคลาสสืบทอดจาก `BaseExecutor` (`base.ts`)
 โดยตรงหรือผ่าน `DefaultExecutor` หรือ executor อื่น ส่วนโมดูลที่เหลือเป็นตัวช่วยเฉพาะผู้ให้บริการ
 (สคีมาของเครื่องมือ, อะแดปเตอร์ fetch/TTS, ตัวจัดการลักษณะเฉพาะ) executor ประกอบด้วย:
@@ -489,7 +489,7 @@ open-sse/
 (ตัวช่วยข้อมูลระบุตัวตนที่ใช้ร่วมกัน) และ `index.ts` (รีจิสทรี)
 
 > หมายเหตุ: ผู้ให้บริการที่ไม่ได้ระบุไว้ที่นี่จะให้บริการโดย `default.ts` โดยใช้ executor ทั่วไป
-> ที่เข้ากันได้กับ OpenAI แค็ตตาล็อกผู้ให้บริการฉบับเต็ม (375 ผู้ให้บริการ) อยู่ใน
+> ที่เข้ากันได้กับ OpenAI แค็ตตาล็อกผู้ให้บริการฉบับเต็ม (376 ผู้ให้บริการ) อยู่ใน
 > `src/shared/constants/providers.ts`
 
 ### 4.3 `open-sse/translator/`
