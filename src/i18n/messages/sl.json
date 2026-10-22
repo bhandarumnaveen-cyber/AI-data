@@ -12067,7 +12067,12 @@
       "resilienceRetried": "Prazen krog ponovljen",
       "resilienceContinued": "Nadaljevano sredi toka",
       "resilienceRecovered": "Obnovljeno z dejanjem odpornosti"
-    }
+    },
+    "throughputPostFirstToken": "Po prvem tokenu",
+    "throughputEndToEnd": "Od začetka do konca",
+    "throughputRate": "{value} tokenov/s",
+    "throughputExplanation": "Pri obeh stopnjah se upošteva večje od števila izhodnih in razmišljevalnih tokenov. Stopnja po prvem tokenu izključuje veljaven TTFT; sicer uporablja celotno trajanje. Stopnja od začetka do konca vedno uporablja celotno trajanje. Odgovor iz medpomnilnika ima lahko visoko stopnjo dostave v izbruhih, čeprav model ne generira hitreje.",
+    "sortPostFirstToken": "Razvrsti po stopnji po prvem tokenu"
   },
   "proxyLogger": {
     "filterAll": "Vse",

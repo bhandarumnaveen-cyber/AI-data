@@ -12067,7 +12067,12 @@
       "resilienceRetried": "Turno vazio repetido",
       "resilienceContinued": "Retomado no meio do fluxo",
       "resilienceRecovered": "Recuperado por uma ação de resiliência"
-    }
+    },
+    "throughputPostFirstToken": "Após o primeiro token",
+    "throughputEndToEnd": "Ponta a ponta",
+    "throughputRate": "{value} tokens/s",
+    "throughputExplanation": "Ambas as taxas utilizam o maior valor entre a contagem de tokens de saída e de raciocínio. A taxa após o primeiro token exclui um TTFT válido; caso contrário, utiliza a duração total. A taxa ponta a ponta utiliza sempre a duração total. Uma resposta em buffer pode ter uma taxa de entrega em rajada elevada sem que a geração do modelo seja mais rápida.",
+    "sortPostFirstToken": "Ordenar por taxa após o primeiro token"
   },
   "proxyLogger": {
     "filterAll": "Todos",

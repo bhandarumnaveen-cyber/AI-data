@@ -12067,7 +12067,12 @@
       "resilienceRetried": "Anwaghachiri ntụgharị efu",
       "resilienceContinued": "Maliteghachiri n'etiti iyi",
       "resilienceRecovered": "Eweghachiri site na omume nkwụsi ike"
-    }
+    },
+    "throughputPostFirstToken": "Mgbe token mbụ gasịrị",
+    "throughputEndToEnd": "Site ná mmalite ruo ná ngwụcha",
+    "throughputRate": "{value} token kwa sekọnd",
+    "throughputExplanation": "Ọnụego abụọ a na-eji nke ka ukwuu n'ime ọnụ ọgụgụ token mmepụta na token ntụgharị uche. Mgbe token mbụ gasịrị anaghị agụnye TTFT ziri ezi; ma ọ bụghị ya, ọ na-eji oge zuru ezu. Site ná mmalite ruo ná ngwụcha na-eji oge zuru ezu mgbe niile. Nzaghachi echekwara nwere ike inwe ọnụego nnyefe dị elu n'otu ntabi na-enweghị mmepụta model ọsọ ọsọ.",
+    "sortPostFirstToken": "Hazie site na ọnụego mgbe token mbụ gasịrị"
   },
   "proxyLogger": {
     "filterAll": "Ha niile",

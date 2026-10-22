@@ -12067,7 +12067,12 @@
       "resilienceRetried": "Tühja käiku korrati",
       "resilienceContinued": "Jätkati voo keskelt",
       "resilienceRecovered": "Taastatud vastupidavustoiminguga"
-    }
+    },
+    "throughputPostFirstToken": "Pärast esimest tokenit",
+    "throughputEndToEnd": "Otsast lõpuni",
+    "throughputRate": "{value} tokenit/sek",
+    "throughputExplanation": "Mõlemad kiirused kasutavad suuremat väljundi- ja arutlustokenite arvu. Esimese tokeni järgne kiirus jätab kehtiva TTFT välja; vastasel juhul kasutab see kogu kestust. Otsast-lõpuni kiirus kasutab alati kogu kestust. Puhverdatud vastusel võib olla kõrge puhanguline tarnimiskiirus, ilma et mudeli genereerimine oleks kiirem.",
+    "sortPostFirstToken": "Sorteeri esimese tokeni järgse kiiruse järgi"
   },
   "proxyLogger": {
     "filterAll": "Kõik",

@@ -12067,7 +12067,12 @@
       "resilienceRetried": "空ターンを再試行",
       "resilienceContinued": "ストリーム途中で再開",
       "resilienceRecovered": "レジリエンス動作で回復"
-    }
+    },
+    "throughputPostFirstToken": "初回トークン以降",
+    "throughputEndToEnd": "エンドツーエンド",
+    "throughputRate": "{value} トークン/秒",
+    "throughputExplanation": "どちらのレートも、出力トークン数と推論トークン数のうち大きい方を使用します。初回トークン以降は、有効な TTFT を除外します。それ以外の場合は全体の時間を使用します。エンドツーエンドは常に全体の時間を使用します。バッファリングされたレスポンスでは、モデルの生成が速くなくても、高いバースト配信レートになることがあります。",
+    "sortPostFirstToken": "初回トークン以降のレートで並べ替え"
   },
   "proxyLogger": {
     "filterAll": "すべて",

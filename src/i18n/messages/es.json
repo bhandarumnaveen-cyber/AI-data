@@ -12067,7 +12067,12 @@
       "resilienceRetried": "Turno vacío reintentado",
       "resilienceContinued": "Reanudado a mitad del flujo",
       "resilienceRecovered": "Recuperado por una acción de resiliencia"
-    }
+    },
+    "throughputPostFirstToken": "Después del primer token",
+    "throughputEndToEnd": "De extremo a extremo",
+    "throughputRate": "{value} tokens/seg",
+    "throughputExplanation": "Ambas tasas usan el mayor de los recuentos de tokens de salida y de razonamiento. La tasa posterior al primer token excluye un TTFT válido; de lo contrario, usa la duración completa. La tasa de extremo a extremo siempre usa la duración completa. Una respuesta almacenada en búfer puede tener una alta tasa de entrega en ráfaga sin una generación del modelo más rápida.",
+    "sortPostFirstToken": "Ordenar por tasa posterior al primer token"
   },
   "proxyLogger": {
     "filterAll": "Todos",

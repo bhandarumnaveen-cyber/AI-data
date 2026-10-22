@@ -12067,7 +12067,12 @@
       "resilienceRetried": "重試空輪次",
       "resilienceContinued": "在串流中途恢復",
       "resilienceRecovered": "透過彈性操作恢復"
-    }
+    },
+    "throughputPostFirstToken": "首個權杖後",
+    "throughputEndToEnd": "端對端",
+    "throughputRate": "{value} 個權杖/秒",
+    "throughputExplanation": "兩種速率皆採用輸出與推理權杖數量中的較大值。首個權杖後速率會排除有效的 TTFT；否則會使用完整持續時間。端對端速率一律使用完整持續時間。緩衝回應可能具有較高的突發傳送速率，但不代表模型生成速度更快。",
+    "sortPostFirstToken": "依首個權杖後速率排序"
   },
   "proxyLogger": {
     "filterAll": "全部",

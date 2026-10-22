@@ -12067,7 +12067,12 @@
       "resilienceRetried": "Zamu tupu imejaribiwa tena",
       "resilienceContinued": "Imeendelea katikati ya mtiririko",
       "resilienceRecovered": "Imerejeshwa na hatua ya ustahimilivu"
-    }
+    },
+    "throughputPostFirstToken": "Baada ya tokeni ya kwanza",
+    "throughputEndToEnd": "Mwanzo hadi mwisho",
+    "throughputRate": "{value} tokeni/sek",
+    "throughputExplanation": "Viwango vyote viwili hutumia idadi kubwa zaidi kati ya tokeni za matokeo na tokeni za ufikiri. Baada-ya-tokeni-ya-kwanza haijumuishi TTFT halali; vinginevyo hutumia muda kamili. Mwanzo-hadi-mwisho hutumia muda kamili kila wakati. Jibu lililohifadhiwa linaweza kuwa na kiwango cha juu cha uwasilishaji wa mlipuko bila uzalishaji wa modeli wa haraka zaidi.",
+    "sortPostFirstToken": "Panga kwa kiwango cha baada ya tokeni ya kwanza"
   },
   "proxyLogger": {
     "filterAll": "Zote",

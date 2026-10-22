@@ -12067,7 +12067,12 @@
       "resilienceRetried": "Tom tur försökt igen",
       "resilienceContinued": "Återupptaget mitt i strömmen",
       "resilienceRecovered": "Återställt av en motståndskraftsåtgärd"
-    }
+    },
+    "throughputPostFirstToken": "Efter första token",
+    "throughputEndToEnd": "End-to-end",
+    "throughputRate": "{value} tokens/sek",
+    "throughputExplanation": "Båda hastigheterna använder det största av antalet output- och reasoning-tokens. Efter första token bortser från en giltig TTFT; i övrigt används hela varaktigheten. End-to-end använder alltid hela varaktigheten. Ett buffrat svar kan ha en hög burst-leveranshastighet utan att modellgenereringen är snabbare.",
+    "sortPostFirstToken": "Sortera efter hastigheten efter första token"
   },
   "proxyLogger": {
     "filterAll": "Alla",

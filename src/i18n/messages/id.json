@@ -12067,7 +12067,12 @@
       "resilienceRetried": "Giliran kosong dicoba ulang",
       "resilienceContinued": "Dilanjutkan di tengah stream",
       "resilienceRecovered": "Dipulihkan oleh tindakan ketahanan"
-    }
+    },
+    "throughputPostFirstToken": "Setelah token pertama",
+    "throughputEndToEnd": "Ujung-ke-ujung",
+    "throughputRate": "{value} token/detik",
+    "throughputExplanation": "Kedua laju menggunakan jumlah token output dan reasoning yang lebih besar. Laju setelah token pertama tidak menyertakan TTFT yang valid; jika tidak, laju tersebut menggunakan durasi penuh. Laju ujung-ke-ujung selalu menggunakan durasi penuh. Respons yang di-buffer dapat memiliki laju pengiriman burst yang tinggi tanpa pembuatan model yang lebih cepat.",
+    "sortPostFirstToken": "Urutkan berdasarkan laju setelah token pertama"
   },
   "proxyLogger": {
     "filterAll": "Semua",

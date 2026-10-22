@@ -12067,7 +12067,12 @@
       "resilienceRetried": "Triaileadh an seal folamh arís",
       "resilienceContinued": "Atosaíodh i lár an tsrutha",
       "resilienceRecovered": "Aisghafa ag gníomh athléimneachta"
-    }
+    },
+    "throughputPostFirstToken": "Tar éis an chéad token",
+    "throughputEndToEnd": "Ó cheann go ceann",
+    "throughputRate": "{value} token in aghaidh an tsoicind",
+    "throughputExplanation": "Úsáideann an dá ráta an ceann is mó de líon na dtoken aschuir agus réasúnaíochta. Fágann an ráta tar éis an chéad token TTFT bailí as an áireamh; murach sin úsáideann sé an fhad iomlán. Úsáideann ó cheann go ceann an fhad iomlán i gcónaí. Is féidir le freagra maolánach ráta seachadta pléasctha ard a bheith aige gan giniúint samhail níos tapúla.",
+    "sortPostFirstToken": "Sórtáil de réir an ráta tar éis an chéad token"
   },
   "proxyLogger": {
     "filterAll": "Go léir",

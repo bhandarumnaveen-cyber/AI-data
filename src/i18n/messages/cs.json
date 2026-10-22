@@ -12067,7 +12067,12 @@
       "resilienceRetried": "Prázdný tah zopakován",
       "resilienceContinued": "Obnoveno uprostřed streamu",
       "resilienceRecovered": "Obnoveno akcí odolnosti"
-    }
+    },
+    "throughputPostFirstToken": "Po prvním tokenu",
+    "throughputEndToEnd": "Od začátku do konce",
+    "throughputRate": "{value} tokenů/s",
+    "throughputExplanation": "Obě rychlosti používají větší z počtu výstupních tokenů a tokenů pro uvažování. Hodnota po prvním tokenu nezahrnuje platné TTFT; jinak používá celkovou dobu trvání. Hodnota od začátku do konce vždy používá celkovou dobu trvání. U bufferované odpovědi může být vysoká rychlost doručení v dávce, aniž by model generoval rychleji.",
+    "sortPostFirstToken": "Seřadit podle rychlosti po prvním tokenu"
   },
   "proxyLogger": {
     "filterAll": "Vše",

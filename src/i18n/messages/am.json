@@ -12067,7 +12067,12 @@
       "resilienceRetried": "ባዶ ዙር እንደገና ተሞክሯል",
       "resilienceContinued": "በዥረቱ መሃል ቀጥሏል",
       "resilienceRecovered": "በመቋቋም እርምጃ ተመልሷል"
-    }
+    },
+    "throughputPostFirstToken": "ከመጀመሪያው ቶከን በኋላ",
+    "throughputEndToEnd": "ከጫፍ እስከ ጫፍ",
+    "throughputRate": "በሰከንድ {value} ቶከኖች",
+    "throughputExplanation": "ሁለቱም ፍጥነቶች ከውጤት እና ከምክንያታዊ ትንተና ቶከኖች ብዛት የሚበልጠውን ይጠቀማሉ። ከመጀመሪያው ቶከን በኋላ ያለው ፍጥነት ትክክለኛ TTFTን አያካትትም፤ ካልሆነ ግን ሙሉውን ቆይታ ይጠቀማል። ከጫፍ እስከ ጫፍ ሁልጊዜ ሙሉውን ቆይታ ይጠቀማል። በቋት የተያዘ ምላሽ የሞዴሉ ማመንጨት ሳይፈጥን ከፍተኛ የፈጣን ማድረስ ፍጥነት ሊኖረው ይችላል።",
+    "sortPostFirstToken": "ከመጀመሪያው ቶከን በኋላ ባለው ፍጥነት ደርድር"
   },
   "proxyLogger": {
     "filterAll": "ሁሉም",

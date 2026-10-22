@@ -12067,7 +12067,12 @@
       "resilienceRetried": "Tour vide réessayé",
       "resilienceContinued": "Repris en cours de flux",
       "resilienceRecovered": "Récupéré par une action de résilience"
-    }
+    },
+    "throughputPostFirstToken": "Après le premier token",
+    "throughputEndToEnd": "Bout en bout",
+    "throughputRate": "{value} tokens/sec",
+    "throughputExplanation": "Les deux débits utilisent le plus grand des nombres de tokens de sortie et de raisonnement. Le débit après le premier token exclut un TTFT valide ; sinon, il utilise la durée totale. Le débit bout en bout utilise toujours la durée totale. Une réponse mise en mémoire tampon peut présenter un débit de livraison en rafale élevé sans génération de modèle plus rapide.",
+    "sortPostFirstToken": "Trier par débit après le premier token"
   },
   "proxyLogger": {
     "filterAll": "Tous",

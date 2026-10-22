@@ -12067,7 +12067,12 @@
       "resilienceRetried": "Празан потез поновљен",
       "resilienceContinued": "Настављено усред стрима",
       "resilienceRecovered": "Опорављено акцијом отпорности"
-    }
+    },
+    "throughputPostFirstToken": "Nakon prvog tokena",
+    "throughputEndToEnd": "Kraj do kraja",
+    "throughputRate": "{value} tokena/s",
+    "throughputExplanation": "Obe brzine koriste veći od broja izlaznih i reasoning tokena. Brzina nakon prvog tokena isključuje važeći TTFT; u suprotnom koristi ukupno trajanje. Kraj do kraja uvek koristi ukupno trajanje. Baferovani odgovor može imati visoku brzinu isporuke u naletu bez brže generacije modela.",
+    "sortPostFirstToken": "Sortiraj po brzini nakon prvog tokena"
   },
   "proxyLogger": {
     "filterAll": "Све",

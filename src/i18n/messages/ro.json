@@ -12067,7 +12067,12 @@
       "resilienceRetried": "Tură goală reîncercată",
       "resilienceContinued": "Reluat la mijlocul fluxului",
       "resilienceRecovered": "Recuperat printr-o acțiune de reziliență"
-    }
+    },
+    "throughputPostFirstToken": "După primul token",
+    "throughputEndToEnd": "De la un capăt la altul",
+    "throughputRate": "{value} tokeni/sec",
+    "throughputExplanation": "Ambele rate folosesc valoarea mai mare dintre numărul de tokeni de ieșire și cel de raționament. Rata după primul token exclude un TTFT valid; în caz contrar, folosește durata completă. Rata de la un capăt la altul folosește întotdeauna durata completă. Un răspuns tamponat poate avea o rată de livrare în rafală ridicată fără o generare mai rapidă a modelului.",
+    "sortPostFirstToken": "Sortează după rata după primul token"
   },
   "proxyLogger": {
     "filterAll": "Toate",

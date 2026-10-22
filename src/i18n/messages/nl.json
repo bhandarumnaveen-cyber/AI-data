@@ -12067,7 +12067,12 @@
       "resilienceRetried": "Lege beurt opnieuw geprobeerd",
       "resilienceContinued": "Midden in stream hervat",
       "resilienceRecovered": "Hersteld door een veerkrachtactie"
-    }
+    },
+    "throughputPostFirstToken": "Na eerste token",
+    "throughputEndToEnd": "End-to-end",
+    "throughputRate": "{value} tokens/sec",
+    "throughputExplanation": "Beide snelheden gebruiken het hoogste van de output- en reasoning-tokentellingen. Na eerste token sluit een geldige TTFT uit; anders wordt de volledige duur gebruikt. End-to-end gebruikt altijd de volledige duur. Een gebufferde respons kan een hoge piekleveringssnelheid hebben zonder dat het model sneller genereert.",
+    "sortPostFirstToken": "Sorteren op snelheid na eerste token"
   },
   "proxyLogger": {
     "filterAll": "Alles",

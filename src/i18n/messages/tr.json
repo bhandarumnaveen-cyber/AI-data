@@ -12067,7 +12067,12 @@
       "resilienceRetried": "Boş tur yeniden denendi",
       "resilienceContinued": "Akış ortasında devam edildi",
       "resilienceRecovered": "Dayanıklılık eylemiyle kurtarıldı"
-    }
+    },
+    "throughputPostFirstToken": "İlk token sonrası",
+    "throughputEndToEnd": "Uçtan uca",
+    "throughputRate": "{value} token/sn",
+    "throughputExplanation": "Her iki oran da çıktı ve akıl yürütme token sayılarından büyük olanını kullanır. İlk token sonrası, geçerli bir TTFT'yi hariç tutar; aksi durumda tam süreyi kullanır. Uçtan uca her zaman tam süreyi kullanır. Tamponlanmış bir yanıt, daha hızlı model üretimi olmadan yüksek ani teslim hızına sahip olabilir.",
+    "sortPostFirstToken": "İlk token sonrası hıza göre sırala"
   },
   "proxyLogger": {
     "filterAll": "Tümü",

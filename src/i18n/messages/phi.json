@@ -12067,7 +12067,12 @@
       "resilienceRetried": "Inulit ang walang lamang turn",
       "resilienceContinued": "Itinuloy sa gitna ng stream",
       "resilienceRecovered": "Naibalik ng isang resilience action"
-    }
+    },
+    "throughputPostFirstToken": "Pagkatapos ng unang token",
+    "throughputEndToEnd": "Mula simula hanggang dulo",
+    "throughputRate": "{value} token/seg",
+    "throughputExplanation": "Parehong rate ay gumagamit ng mas malaki sa bilang ng output at reasoning token. Ang pagkatapos ng unang token ay hindi kasama ang valid na TTFT; kung hindi, ginagamit nito ang buong tagal. Ang mula simula hanggang dulo ay palaging gumagamit ng buong tagal. Ang isang naka-buffer na tugon ay maaaring may mataas na burst delivery rate nang walang mas mabilis na henerasyon ng modelo.",
+    "sortPostFirstToken": "Pagbukud-bukurin ayon sa rate pagkatapos ng unang token"
   },
   "proxyLogger": {
     "filterAll": "Lahat",

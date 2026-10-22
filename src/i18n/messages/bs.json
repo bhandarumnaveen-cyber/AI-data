@@ -12067,7 +12067,12 @@
       "resilienceRetried": "Prazan krug ponovljen",
       "resilienceContinued": "Nastavljeno usred streama",
       "resilienceRecovered": "Oporavljeno akcijom otpornosti"
-    }
+    },
+    "throughputPostFirstToken": "Nakon prvog tokena",
+    "throughputEndToEnd": "Od početka do kraja",
+    "throughputRate": "{value} tokena/s",
+    "throughputExplanation": "Obje stope koriste veću vrijednost između broja izlaznih tokena i tokena zaključivanja. Stopa nakon prvog tokena isključuje važeći TTFT; u suprotnom koristi puno trajanje. Stopa od početka do kraja uvijek koristi puno trajanje. Baferisani odgovor može imati visoku stopu isporuke u rafalu bez brže generacije modela.",
+    "sortPostFirstToken": "Sortiraj po stopi nakon prvog tokena"
   },
   "proxyLogger": {
     "filterAll": "Sve",

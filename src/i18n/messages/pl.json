@@ -12067,7 +12067,12 @@
       "resilienceRetried": "Ponawiono pustą turę",
       "resilienceContinued": "Wznowiono w trakcie strumienia",
       "resilienceRecovered": "Odzyskano dzięki akcji odporności"
-    }
+    },
+    "throughputPostFirstToken": "Po pierwszym tokenie",
+    "throughputEndToEnd": "Od początku do końca",
+    "throughputRate": "{value} tokenów/s",
+    "throughputExplanation": "Obie wartości tempa wykorzystują większą z liczb tokenów wyjściowych i tokenów rozumowania. Tempo po pierwszym tokenie pomija prawidłowy TTFT; w przeciwnym razie używa pełnego czasu trwania. Tempo od początku do końca zawsze używa pełnego czasu trwania. Buforowana odpowiedź może mieć wysokie chwilowe tempo dostarczania bez szybszego generowania przez model.",
+    "sortPostFirstToken": "Sortuj według tempa po pierwszym tokenie"
   },
   "proxyLogger": {
     "filterAll": "Wszystkie",

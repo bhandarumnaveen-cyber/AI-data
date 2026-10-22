@@ -12067,7 +12067,12 @@
       "resilienceRetried": "An sake gwada zagaye mara komai",
       "resilienceContinued": "An ci gaba a tsakiyar rafi",
       "resilienceRecovered": "An dawo da shi ta matakin juriya"
-    }
+    },
+    "throughputPostFirstToken": "Bayan farkon token",
+    "throughputEndToEnd": "Daga farko zuwa ƙarshe",
+    "throughputRate": "{value} token/daƙiƙa",
+    "throughputExplanation": "Duk ƙididdigar biyu suna amfani da mafi girman adadin token na fitarwa da na tunani. Bayan farkon token ba ya haɗa da TTFT mai inganci; in ba haka ba yana amfani da cikakken lokaci. Daga farko zuwa ƙarshe koyaushe yana amfani da cikakken lokaci. Amsa da aka tanada (buffered) na iya samun ƙimar isar da sauri mai yawa ba tare da saurin samar da samfurin ba.",
+    "sortPostFirstToken": "Tsara bisa ƙimar bayan farkon token"
   },
   "proxyLogger": {
     "filterAll": "Duka",

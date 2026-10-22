@@ -12067,7 +12067,12 @@
       "resilienceRetried": "A tún gbìyànjú àyípo òfo",
       "resilienceContinued": "A tẹ̀síwájú láàrin ìṣàn",
       "resilienceRecovered": "A gbà padà nípasẹ̀ ìgbésẹ̀ ìfaradà"
-    }
+    },
+    "throughputPostFirstToken": "Lẹ́yìn àkọ́kọ́ tọ́kẹ̀nì",
+    "throughputEndToEnd": "Láti ìbẹ̀rẹ̀ dé ìparí",
+    "throughputRate": "{value} tọ́kẹ̀nì/sẹ́kọ̀ndì",
+    "throughputExplanation": "Àwọn ìwọ̀n méjèèjì ń lo èyí tó tóbi jù nínú iye tọ́kẹ̀nì ìjáde àti ìrònú. Lẹ́yìn àkọ́kọ́ tọ́kẹ̀nì kò ní TTFT tó wúlò; bí bẹ́ẹ̀ kọ́, ó ń lo gbogbo àkókò. Láti ìbẹ̀rẹ̀ dé ìparí ń lo gbogbo àkókò nígbà gbogbo. Ìdáhùn tí a kó jọ lè ní ìwọ̀n ìfijíṣẹ́ gíga láìsí ìpilẹ̀ṣẹ̀ àwòkọ́ tó yára jù.",
+    "sortPostFirstToken": "To lẹ́sẹẹsẹ nípa ìwọ̀n lẹ́yìn àkọ́kọ́ tọ́kẹ̀nì"
   },
   "proxyLogger": {
     "filterAll": "Gbogbo rẹ̀",

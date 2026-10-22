@@ -12067,7 +12067,12 @@
       "resilienceRetried": "Leere Runde wiederholt",
       "resilienceContinued": "Mitten im Stream fortgesetzt",
       "resilienceRecovered": "Durch Resilienzaktion wiederhergestellt"
-    }
+    },
+    "throughputPostFirstToken": "Nach erstem Token",
+    "throughputEndToEnd": "End-to-End",
+    "throughputRate": "{value} Tokens/Sek.",
+    "throughputExplanation": "Beide Raten verwenden den größeren der Token-Zählwerte für Ausgabe und Reasoning. „Nach erstem Token“ schließt eine gültige TTFT aus; andernfalls wird die volle Dauer verwendet. End-to-End verwendet immer die volle Dauer. Eine gepufferte Antwort kann eine hohe Burst-Lieferrate aufweisen, ohne dass das Modell schneller generiert.",
+    "sortPostFirstToken": "Nach Rate ab erstem Token sortieren"
   },
   "proxyLogger": {
     "filterAll": "Alle",

@@ -12067,7 +12067,12 @@
       "resilienceRetried": "תור ריק נוסה שוב",
       "resilienceContinued": "חודש באמצע הזרם",
       "resilienceRecovered": "שוחזר באמצעות פעולת חוסן"
-    }
+    },
+    "throughputPostFirstToken": "לאחר הטוקן הראשון",
+    "throughputEndToEnd": "מקצה לקצה",
+    "throughputRate": "{value} טוקנים/שנייה",
+    "throughputExplanation": "שני הקצבים משתמשים במספר הגדול מבין ספירות טוקני הפלט והחשיבה. הקצב שלאחר הטוקן הראשון אינו כולל TTFT תקף; אחרת הוא משתמש במשך המלא. קצב מקצה לקצה משתמש תמיד במשך המלא. לתגובה עם חוצץ יכולה להיות מהירות אספקה גבוהה בפרץ בלי יצירת מודל מהירה יותר.",
+    "sortPostFirstToken": "מיון לפי קצב לאחר הטוקן הראשון"
   },
   "proxyLogger": {
     "filterAll": "הכול",

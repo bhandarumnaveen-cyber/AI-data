@@ -12067,7 +12067,12 @@
       "resilienceRetried": "Retried empty turn",
       "resilienceContinued": "Resumed mid-stream",
       "resilienceRecovered": "Recovered by a resilience action"
-    }
+    },
+    "throughputPostFirstToken": "Post-first-token",
+    "throughputEndToEnd": "End-to-end",
+    "throughputRate": "{value} tokens/sec",
+    "throughputExplanation": "Both rates use the larger of output and reasoning token counts. Post-first-token excludes a valid TTFT; otherwise it uses the full duration. End-to-end always uses the full duration. A buffered response can have a high burst delivery rate without faster model generation.",
+    "sortPostFirstToken": "Sort by post-first-token rate"
   },
   "proxyLogger": {
     "filterAll": "All",

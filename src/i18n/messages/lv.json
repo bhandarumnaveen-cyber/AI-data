@@ -12067,7 +12067,12 @@
       "resilienceRetried": "Tukšais gājiens atkārtots",
       "resilienceContinued": "Atsākts straumes vidū",
       "resilienceRecovered": "Atjaunots ar noturības darbību"
-    }
+    },
+    "throughputPostFirstToken": "Pēc pirmā marķiera",
+    "throughputEndToEnd": "No sākuma līdz beigām",
+    "throughputRate": "{value} marķieri/s",
+    "throughputExplanation": "Abas likmes izmanto lielāko no izvades un spriešanas marķieru skaita. Rādītājs “Pēc pirmā marķiera” neietver derīgu TTFT; pretējā gadījumā tiek izmantots pilns ilgums. Rādītājs “No sākuma līdz beigām” vienmēr izmanto pilnu ilgumu. Buferētai atbildei var būt augsta brāzmaina piegādes likme bez ātrākas modeļa ģenerēšanas.",
+    "sortPostFirstToken": "Kārtot pēc likmes pēc pirmā marķiera"
   },
   "proxyLogger": {
     "filterAll": "Visi",

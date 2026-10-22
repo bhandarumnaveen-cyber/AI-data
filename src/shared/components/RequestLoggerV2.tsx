@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import Card from "./Card";
 import RequestLoggerDetail from "./RequestLoggerDetail";
+import RequestLogThroughput from "./RequestLogThroughput";
 import { copyToClipboard } from "@/shared/utils/clipboard";
 import {
   PROVIDER_COLORS,
@@ -29,7 +30,7 @@ import {
 } from "@/shared/utils/formatting";
 import { getProviderDisplayLabel } from "@/shared/utils/providerDisplayLabel";
 import { mergeLogFilterOptions } from "@/shared/utils/logFilterOptions";
-import { buildLogTpsTitle, computeLogTps } from "@/shared/utils/logTps";
+import { computeLogTps } from "@/shared/utils/logTps";
 import useEmailPrivacyStore from "@/store/emailPrivacyStore";
 import {
   computeLogsSignature,
@@ -75,12 +76,6 @@ function getLogTotalTokens(log) {
 // #13130: generation-time TPS (duration - TTFT, reasoning-aware); see logTps.ts.
 function getLogTps(log): number {
   return computeLogTps(log?.tokens?.out, log?.tokens?.reasoning, log?.duration, log?.ttft);
-}
-
-function formatTps(tps: number): string {
-  if (tps <= 0) return "—";
-  if (tps >= 100) return Math.round(tps).toLocaleString();
-  return tps.toFixed(1);
 }
 
 function getCacheSourceMeta(cacheSource: unknown) {
@@ -1272,11 +1267,24 @@ const RequestLoggerV2 = forwardRef<RequestLoggerV2Handle, RequestLoggerV2Initial
                     )}
                     {visibleColumns.tps && (
                       <th
-                        className={`${LOG_TABLE_HEADER_CELL_RIGHT_CLASS} cursor-pointer select-none`}
-                        onClick={() => toggleSort("tps")}
+                        className={LOG_TABLE_HEADER_CELL_RIGHT_CLASS}
+                        aria-sort={
+                          sortBy === "tps_desc"
+                            ? "descending"
+                            : sortBy === "tps_asc"
+                              ? "ascending"
+                              : "none"
+                        }
                       >
-                        {t("columns.tps")}
-                        {getSortIndicator("tps")}
+                        <button
+                          type="button"
+                          onClick={() => toggleSort("tps")}
+                          aria-label={t("sortPostFirstToken")}
+                          title={t("sortPostFirstToken")}
+                        >
+                          {t("columns.tps")}
+                          {getSortIndicator("tps")}
+                        </button>
                       </th>
                     )}
                     {visibleColumns.ttft && (
@@ -1638,25 +1646,7 @@ const RequestLoggerV2 = forwardRef<RequestLoggerV2Handle, RequestLoggerV2Initial
                             {isActive ? (
                               <span className="text-text-muted text-[10px]">—</span>
                             ) : (
-                              (() => {
-                                const tps = getLogTps(log);
-                                const color =
-                                  tps <= 0
-                                    ? "text-text-muted"
-                                    : tps >= 80
-                                      ? "text-emerald-600 dark:text-emerald-400"
-                                      : tps >= 30
-                                        ? "text-sky-600 dark:text-sky-400"
-                                        : "text-amber-600 dark:text-amber-400";
-                                return (
-                                  <span
-                                    className={color}
-                                    title={buildLogTpsTitle(log, tps, formatDuration)}
-                                  >
-                                    {formatTps(tps)}
-                                  </span>
-                                );
-                              })()
+                              <RequestLogThroughput log={log} />
                             )}
                           </td>
                         )}

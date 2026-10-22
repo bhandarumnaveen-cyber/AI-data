@@ -12067,7 +12067,12 @@
       "resilienceRetried": "重试空轮次",
       "resilienceContinued": "在流中途恢复",
       "resilienceRecovered": "通过弹性操作恢复"
-    }
+    },
+    "throughputPostFirstToken": "首个令牌后",
+    "throughputEndToEnd": "端到端",
+    "throughputRate": "{value} 个令牌/秒",
+    "throughputExplanation": "两种速率均使用输出令牌数和推理令牌数中的较大值。首个令牌后速率会排除有效的 TTFT；否则使用完整时长。端到端速率始终使用完整时长。缓冲响应可能具有较高的突发传输速率，但这并不意味着模型生成速度更快。",
+    "sortPostFirstToken": "按首个令牌后速率排序"
   },
   "proxyLogger": {
     "filterAll": "全部",

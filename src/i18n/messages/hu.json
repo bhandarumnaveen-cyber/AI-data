@@ -12067,7 +12067,12 @@
       "resilienceRetried": "Üres kör újrapróbálva",
       "resilienceContinued": "Folytatva a stream közepén",
       "resilienceRecovered": "Rugalmassági művelettel helyreállítva"
-    }
+    },
+    "throughputPostFirstToken": "Első token utáni",
+    "throughputEndToEnd": "Végponttól végpontig",
+    "throughputRate": "{value} token/mp",
+    "throughputExplanation": "Mindkét arány a kimeneti és a reasoning tokenszám közül a nagyobbat használja. Az első token utáni érték kizárja az érvényes TTFT-t; egyébként a teljes időtartamot használja. A végponttól végpontig érték mindig a teljes időtartamot használja. Egy puffereit válasz nagy burst átviteli sebességgel is rendelkezhet anélkül, hogy a modell gyorsabban generálna.",
+    "sortPostFirstToken": "Rendezés az első token utáni arány szerint"
   },
   "proxyLogger": {
     "filterAll": "Összes",

@@ -12067,7 +12067,12 @@
       "resilienceRetried": "Dawra vojta ġiet ippruvata mill-ġdid",
       "resilienceContinued": "Kompla f'nofs il-fluss",
       "resilienceRecovered": "Irkuprat minn azzjoni ta' reżiljenza"
-    }
+    },
+    "throughputPostFirstToken": "Wara l-ewwel token",
+    "throughputEndToEnd": "Mit-tarf għat-tarf",
+    "throughputRate": "{value} tokens/sec",
+    "throughputExplanation": "Iż-żewġ rati jużaw l-akbar fost l-għadd ta' tokens tal-output u tar-raġunament. Il-metrika 'Wara l-ewwel token' teskludi TTFT validu; inkella tuża t-tul sħiħ. Mit-tarf għat-tarf dejjem juża t-tul sħiħ. Risposta b'buffer tista' jkollha rata għolja ta' twassil f'daqqa mingħajr ġenerazzjoni aktar mgħaġġla mill-mudell.",
+    "sortPostFirstToken": "Issortja skont ir-rata wara l-ewwel token"
   },
   "proxyLogger": {
     "filterAll": "Kollha",
