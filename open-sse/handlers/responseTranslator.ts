@@ -1,3 +1,7 @@
+import {
+  applyToolCallShimToBuffer,
+  findToolCallSchema,
+} from "../translator/helpers/toolCallShim.ts";
 import { FORMATS } from "../translator/formats.ts";
 import {
   buildGeminiThoughtSignatureKey,
@@ -722,7 +726,8 @@ export function translateNonStreamingResponse(
     return convertOpenAINonStreamingToClaude(
       toRecord(intermediateOpenAI),
       toolNameMap ?? null,
-      requestedThinking
+      requestedThinking,
+      toolSchemas
     );
   }
 
@@ -770,7 +775,8 @@ function resolveReasoningText(messageObj: JsonRecord): string {
 function convertOpenAINonStreamingToClaude(
   openaiResponse: JsonRecord,
   toolNameMap?: Map<string, string> | null,
-  requestedThinking?: boolean
+  requestedThinking?: boolean,
+  toolSchemas?: Map<string, JsonRecord> | null
 ): JsonRecord {
   const choices = openaiResponse.choices as unknown[] | undefined;
   const isChoicesArray = Array.isArray(choices);
@@ -846,12 +852,19 @@ function convertOpenAINonStreamingToClaude(
       const fn = toRecord(toolObj.function);
       // An id-less call gets a random id; a timestamp collides across calls.
       const rawId = toString(toolObj.id) || undefined;
+      const name = restoreClaudeToolName(toString(fn.name), toolNameMap ?? null);
+      const schema = findToolCallSchema(name, toolSchemas);
+      const args =
+        typeof fn.arguments === "string" ? fn.arguments : JSON.stringify(fn.arguments || {});
       content.push({
         type: "tool_use",
         id: sanitizeToolId(rawId),
-        name: restoreClaudeToolName(toString(fn.name), toolNameMap ?? null),
-        input:
-          typeof fn.arguments === "string" ? JSON.parse(fn.arguments || "{}") : fn.arguments || {},
+        name,
+        input: JSON.parse(
+          name.toLowerCase() === "read" && schema
+            ? applyToolCallShimToBuffer(name, args, schema)
+            : args || "{}"
+        ),
       });
     }
   }
