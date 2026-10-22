@@ -274,7 +274,7 @@ describe("Sidebar hierarchy, keyboard navigation and ARIA contract (#12869)", ()
   });
 
   // The skip link moved to DashboardShell, before the sidebar (it must exist even when the sidebar
-  // is a closed mobile Sheet); its first-in-DOM position is asserted in dashboard-layout-flag.
+  // is a closed mobile Sheet); its first-in-DOM position is asserted in dashboard-layout-shell.
   it("keeps a natural Tab order: brand, search, then navigation", async () => {
     const user = userEvent.setup();
     const loaded = await loadSidebar();

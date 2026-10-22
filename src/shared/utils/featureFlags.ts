@@ -207,27 +207,6 @@ export function isArenaEloSyncEnabled(): boolean {
   return isFeatureFlagEnabled("ARENA_ELO_SYNC_ENABLED");
 }
 
-/**
- * Dashboard shell renderer (KEA-7886): kit shell when true, legacy shell when false.
- * Read by the server dashboard layout, so a failing flag read (DB error) must never break the
- * render: it falls back to the definition default instead of throwing.
- */
-export function isUiKitShellEnabled(
-  reader: (key: string) => boolean = isFeatureFlagEnabled
-): boolean {
-  try {
-    return reader("UI_KIT_SHELL");
-  } catch (error) {
-    const fallback =
-      FEATURE_FLAG_DEFINITIONS.find((d) => d.key === "UI_KIT_SHELL")?.defaultValue === "true";
-    console.error(
-      `[featureFlags] Failed to resolve UI_KIT_SHELL, defaulting to ${fallback ? "enabled" : "disabled"}:`,
-      error instanceof Error ? error.message : error
-    );
-    return fallback;
-  }
-}
-
 export function isControlPlaneProxyDirectFallbackEnabled(): boolean {
   try {
     return isFeatureFlagEnabled("OMNIROUTE_CONTROL_PLANE_PROXY_DIRECT_FALLBACK");

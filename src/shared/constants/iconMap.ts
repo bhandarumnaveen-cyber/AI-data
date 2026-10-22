@@ -314,12 +314,10 @@ import {
 // Droplet and Mail are imported by the blocks above.
 import {
   Aperture,
-  ArrowBigUp,
   AudioWaveform,
   BellRing,
   Bird,
   Box,
-  Boxes,
   BrainCog,
   BriefcaseBusiness,
   Brush,
@@ -334,7 +332,6 @@ import {
   Leaf,
   MicVocal,
   PackageCheck,
-  PackageOpen,
   PawPrint,
   Plane,
   Router,
@@ -348,14 +345,17 @@ import {
   Wind,
 } from "lucide-react";
 
+// F4 (Task 41) — picks that the F4 sweep block above does not import (KEA-7886).
+import { ArrowBigUpDash, Blend } from "lucide-react";
+
 /**
- * Material Symbols name → Lucide icon. `null` = still rendered with the Material ligature by
- * <Icon> (fallback); no entry is null since the F4 sweep, and names in use must stay mapped
- * (tests/unit/icon-map-object-values.test.ts). Every name in use MUST have an
- * entry (tests/unit/icon-map-coverage.test.ts); `npm run gen:icon-map` prints the missing ones.
+ * Icon name (the Material Symbols vocabulary the screens use) → Lucide icon. Every name in use
+ * MUST map to a Lucide glyph (tests/unit/icon-map-coverage.test.ts for literal names,
+ * tests/unit/icon-map-object-values.test.ts for object-map values); `npm run gen:icon-map`
+ * prints the missing ones. An unmapped name renders <Icon>'s neutral placeholder glyph.
  * Navigation uses one ink (no per-item accent) — SIDEBAR_ICON_ACCENTS was retired (spec §3.5).
  */
-export const ICON_MAP: Record<string, LucideIcon | null> = {
+export const ICON_MAP: Record<string, LucideIcon> = {
   // ── shell + primitives ──
   home: House,
   settings: Settings,
@@ -610,7 +610,7 @@ export const ICON_MAP: Record<string, LucideIcon | null> = {
   gpp_maybe: ShieldAlert,
   graphic_eq: AudioLines,
   grid_view: LayoutGrid,
-  group_work: Boxes,
+  group_work: Blend,
   handshake: Handshake,
   handyman: Hammer,
   hearing: Ear,
@@ -621,13 +621,13 @@ export const ICON_MAP: Record<string, LucideIcon | null> = {
   input: ArrowRightToLine,
   insert_drive_file: File,
   install_desktop: MonitorDown,
-  inventory_2: PackageOpen,
+  inventory_2: Archive,
   // Lucide has no key-off glyph; KeyRound is the closest key icon (the "no key" meaning comes from the label).
   key_off: KeyRound,
   key_vertical: KeyRound,
   keyboard_arrow_down: ChevronDown,
   keyboard_arrow_up: ChevronUp,
-  keyboard_capslock: ArrowBigUp,
+  keyboard_capslock: ArrowBigUpDash,
   label: Tag,
   library_books: LibraryBig,
   linear_scale: GitCommitHorizontal,
@@ -767,6 +767,7 @@ export const ICON_MAP: Record<string, LucideIcon | null> = {
 };
 
 export function resolveIcon(name: string | null | undefined): LucideIcon | null {
-  if (!name) return null;
-  return ICON_MAP[name] ?? null;
+  // Own keys only: `constructor`/`toString` must not resolve to Object.prototype members.
+  if (!name || !Object.hasOwn(ICON_MAP, name)) return null;
+  return ICON_MAP[name];
 }

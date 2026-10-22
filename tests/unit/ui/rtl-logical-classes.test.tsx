@@ -25,51 +25,14 @@ function src(rel: string) {
   return readFileSync(resolve(cwd, rel), "utf-8");
 }
 
-// ─── DashboardLayout.tsx ──────────────────────────────────────────────────────
+// ─── Dashboard shell ─────────────────────────────────────────────────────────
+// The hand-rolled mobile drawer (`start-0` + `.dashboard-sidebar-mobile` RTL anchoring in
+// globals.css) went away with the legacy shell (KEA-7886 F4). The kit shell's drawer is the kit
+// Sidebar's own Sheet, anchored by `side` (asserted in the "Kit shell" block below).
 
-// The hand-rolled mobile drawer lives on in the legacy shell (UI_KIT_SHELL=false); the kit shell's
-// drawer is the kit Sidebar's own Sheet, anchored by `side` (asserted in the Sidebar block below).
-describe("DashboardLayout — mobile sidebar drawer uses logical classes", () => {
-  const code = src("src/shared/components/layouts/legacy/DashboardLayoutLegacy.tsx");
-
-  it("uses start-0 (not bare left-0) for the mobile sidebar drawer", () => {
-    // The drawer must anchor to the inline-start edge so it flips in RTL.
-    expect(code).toContain("start-0");
-  });
-
-  it("does not use bare left-0 for the mobile sidebar drawer", () => {
-    // "inset-y-0 left-0" is the old physical class that breaks RTL.
-    expect(code).not.toContain("inset-y-0 left-0");
-  });
-
-  it("uses -translate-x-full only when combined with RTL-aware transform or logical alternative", () => {
-    // We keep -translate-x-full/translate-x-0 for slide animation but anchor
-    // with start-0 so physical translate still produces correct visual result
-    // in both LTR and RTL (the drawer always slides in from its own start edge).
-    // Just confirm start-0 is present (already asserted above).
-    expect(code).toContain("start-0");
-  });
-
-  it("carries the dashboard-sidebar-mobile hook class for explicit RTL anchoring", () => {
-    // .dashboard-sidebar-mobile gets explicit right:0/translateX(100%) rules
-    // under dir=rtl in globals.css, so the drawer cannot end up parked on the
-    // left edge when closed (physical -translate-x-full alone would do that).
-    expect(code).toContain("dashboard-sidebar-mobile");
-  });
-});
-
-// ─── globals.css ────────────────────────────────────────────────────────────
-
-describe("globals.css — mobile sidebar has explicit RTL anchoring rules", () => {
-  const css = src("src/app/globals.css");
-
-  it("pins .dashboard-sidebar-mobile to the right edge under dir=rtl", () => {
-    expect(css).toContain(".dashboard-sidebar-mobile");
-    expect(css).toContain("right: 0");
-  });
-
-  it("slides the closed drawer off the right edge under dir=rtl", () => {
-    expect(css).toContain("translateX(100%)");
+describe("globals.css — no leftover hooks of the removed hand-rolled drawer", () => {
+  it("drops the .dashboard-sidebar-mobile RTL anchoring rules", () => {
+    expect(src("src/app/globals.css")).not.toContain(".dashboard-sidebar-mobile");
   });
 });
 

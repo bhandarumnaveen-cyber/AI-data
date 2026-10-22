@@ -6,7 +6,10 @@ import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
 
-test("every Material Symbols name used in src/ has an entry in ICON_MAP (Lucide or explicit null)", async () => {
+// KEA-7886 F4: the Material Symbols font is gone, so <Icon> has no ligature fallback — a name
+// missing from ICON_MAP draws a placeholder glyph. Every icon name used in src/ must therefore
+// map to a real Lucide component.
+test("every icon name used in src/ maps to a Lucide icon in ICON_MAP", async () => {
   const out = execFileSync(process.execPath, ["scripts/dev/gen-icon-map.mjs", "--names"], {
     cwd: ROOT,
   }).toString();
@@ -16,43 +19,62 @@ test("every Material Symbols name used in src/ has an entry in ICON_MAP (Lucide 
     .filter(Boolean);
   assert.ok(
     names.length > 250,
-    `the scanner found ${names.length} names; expected the ~330 in use`
+    `the scanner found ${names.length} names; expected the ~380 in use`
   );
   const { ICON_MAP } = await import("../../src/shared/constants/iconMap.ts");
-  const missing = names.filter((n) => !(n in ICON_MAP));
+  const unmapped = names.filter((n) => typeof ICON_MAP[n] !== "object" || ICON_MAP[n] === null);
   assert.deepEqual(
-    missing,
+    unmapped,
     [],
-    `names without an ICON_MAP entry (run: npm run gen:icon-map):\n${missing.join("\n")}`
+    `names without a Lucide icon in ICON_MAP:\n${unmapped.join("\n")}\n` +
+      "Real icon → map it to a Lucide component in src/shared/constants/iconMap.ts (npm run gen:icon-map). " +
+      "Not an icon (a logo key, a size key… in an `icon:` slot that never reaches <Icon>) → add it to " +
+      "NOT_ICON_NAMES in scripts/dev/gen-icon-map.mjs with the proof, never map it to a fake glyph."
   );
 });
 
-test("the generator never emits a name outside the Material Symbols vocabulary", async () => {
-  const { collectNames, loadDtsNames, LEGACY_LIGATURES } =
-    await import("../../scripts/dev/gen-icon-map.mjs");
-  // Vocabulary rebuilt here from the two exported sources, not via loadMaterialNames(), so the
-  // loop below checks the generator against an independent set instead of its own filter.
-  const dts = loadDtsNames(ROOT);
-  assert.ok(dts.size > 3000, `expected the full Material vocabulary, got ${dts.size}`);
-  const vocabulary = new Set([...dts, ...LEGACY_LIGATURES]);
-  const names = collectNames(ROOT);
-  // Regression guard: these were ICON_MAP keys before the vocabulary filter existed.
-  assert.ok(!names.includes("true") && !names.includes("anthropic"), "non-icon strings leaked");
-  for (const n of names) assert.ok(vocabulary.has(n), `"${n}" is not a Material Symbols name`);
+test("ICON_MAP has no null entry and every value is a Lucide component", async () => {
+  const { ICON_MAP } = await import("../../src/shared/constants/iconMap.ts");
+  const bad = Object.entries(ICON_MAP)
+    .filter(([, icon]) => !icon || typeof icon !== "object" || !("render" in icon))
+    .map(([name]) => name);
+  assert.deepEqual(bad, [], `entries that are not Lucide components:\n${bad.join("\n")}`);
 });
 
-test("the scanner sees names already converted to <Icon name>", async () => {
-  const { collectNamesFromSource, loadMaterialNames } =
-    await import("../../scripts/dev/gen-icon-map.mjs");
-  const vocabulary = loadMaterialNames(ROOT);
+test("the generator drops the known non-icon strings", async () => {
+  const { collectNames, NOT_ICON_NAMES } = await import("../../scripts/dev/gen-icon-map.mjs");
+  const names = collectNames(ROOT);
+  // Regression guard: provider logo keys and size keys once leaked into ICON_MAP as fake icons.
+  for (const n of ["anthropic", "server", "proxy", "icon", "generic"]) {
+    assert.ok(!names.includes(n), `"${n}" is not an icon name`);
+  }
+  assert.ok(NOT_ICON_NAMES.size > 0);
+});
+
+test("the scanner sees names in <Icon name>, icon props and ternaries, but not data-*-icon attrs", async () => {
+  const { collectNamesFromSource } = await import("../../scripts/dev/gen-icon-map.mjs");
   const source = `
     <Icon name="settings" size={16} />
     <Icon name={x ? "light_mode" : "dark_mode"} className="shrink-0" />
-    <Icon name={active ? "true" : "anthropic"} />
+    <Button icon="add" iconRight={open ? "expand_less" : "expand_more"} />
+    <span data-provider-icon="generic" />
+    const TABS = [{ id: "a", icon: "tune" }];
   `;
-  assert.deepEqual(collectNamesFromSource(source, vocabulary), [
+  assert.deepEqual(collectNamesFromSource(source), [
+    "add",
     "dark_mode",
+    "expand_less",
+    "expand_more",
     "light_mode",
     "settings",
+    "tune",
   ]);
+});
+
+test("resolveIcon only resolves own ICON_MAP keys (no Object.prototype members)", async () => {
+  const { resolveIcon } = await import("../../src/shared/constants/iconMap.ts");
+  for (const name of ["constructor", "toString", "hasOwnProperty", "__proto__"]) {
+    assert.equal(resolveIcon(name), null, `${name} is not an icon`);
+  }
+  assert.ok(resolveIcon("settings"), "a real key still resolves");
 });

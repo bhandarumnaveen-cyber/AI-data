@@ -28,14 +28,16 @@ lastUpdated: 2026-10-20
   `globals.css`) and the legacy Tailwind `dark:` utilities key on the `.dark` class. There are no
   accent color presets: the accent always comes from the kit.
 - **Components.** `src/shared/components/*` keep the OmniRoute component API. `Button variant="primary"`
-  paints with the bridged accent (`--grad-brand` → `--ci-color-accent`) and the kit's accent ink
-  (`text-accent-foreground`); the `.ci-button--warning` and `.ci-badge[data-tone]` rules at the end of
+  is the kit `default` button (`--ci-button-primary-*`: the inverse surface in light, the accent with
+  its `--ci-color-accent-foreground` ink in dark); the `.ci-button--warning` and `.ci-badge[data-tone]` rules at the end of
   `globals.css` (`@layer components`) are OmniRoute extensions on top of the kit classes.
-- **Icons.** `<Icon name="material_name">` (`src/shared/components/Icon.tsx`) resolves the Material
-  Symbols name through `ICON_MAP` (`src/shared/constants/iconMap.ts`) to a Lucide glyph; a name mapped to
-  `null` falls back to the Material ligature (with a dev-only console warning). `npm run gen:icon-map`
-  prints the names in use that are missing from the map (`tests/unit/icon-map-coverage.test.ts` fails on
-  any missing entry); `scripts/dev/codemod-material-icons.mjs <dir|file>... [--write]` rewrites literal
+- **Icons.** `<Icon name="material_name">` (`src/shared/components/Icon.tsx`) resolves the name (the
+  Material Symbols vocabulary the screens use) through `ICON_MAP` (`src/shared/constants/iconMap.ts`) to a
+  Lucide glyph. The Material Symbols font and package are gone: a name missing from the map renders a
+  neutral placeholder glyph (`data-icon-missing="true"`) and logs a console warning outside production.
+  `npm run gen:icon-map` prints the names in use that are missing from the map
+  (`tests/unit/icon-map-coverage.test.ts` fails on any name without a Lucide icon);
+  `scripts/dev/codemod-material-icons.mjs <dir|file>... [--write]` rewrites literal
   `<span className="material-symbols-outlined">` spans to `<Icon>`.
 - **Brand.** `src/shared/components/OmniRouteLogo.tsx` wraps the kit: the default export `OmniRouteLogo`
   renders `ProductIcon product="omniroute" variant="glyph"` (inline SVG, `basePath`-safe) and

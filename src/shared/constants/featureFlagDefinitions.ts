@@ -590,18 +590,6 @@ export const FEATURE_FLAG_DEFINITIONS: FeatureFlagDefinition[] = [
     warningLevel: "info",
   },
   {
-    key: "UI_KIT_SHELL",
-    label: "Keak UI Kit Shell",
-    description:
-      "Render the dashboard shell (sidebar, header, command palette) with the Keak CI UI Kit. Disable to fall back to the legacy shell during the cutover.",
-    descriptionI18nKey: "featureFlagUiKitShellDescription",
-    category: "runtime",
-    defaultValue: "true",
-    type: "boolean",
-    requiresRestart: false,
-    warningLevel: "info",
-  },
-  {
     key: "RESPONSES_PASSTHROUGH_DROP_COMMENTARY",
     label: "Drop Responses Commentary",
     description:

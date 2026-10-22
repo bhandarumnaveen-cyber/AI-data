@@ -141,6 +141,6 @@ test("every Material name the literal scanner finds resolves to Lucide (no null 
   assert.deepEqual(
     unresolved,
     [],
-    `names in use that still render the Material ligature:\n${unresolved.join("\n")}`
+    `names in use without a Lucide icon (they would draw the <Icon> placeholder glyph):\n${unresolved.join("\n")}`
   );
 });

@@ -96,12 +96,6 @@ test("connection rows use the compact shared ReorderControl and hide separators 
   assert.match(read("src/shared/components/ReorderControl.tsx"), /size-5 min-h-5/);
 });
 
-test("icon size utilities win over the Material Symbols base size", () => {
-  const globals = read("src/app/globals.css");
-  assert.match(globals, /@import "material-symbols\/outlined\.css" layer\(base\);/);
-  assert.match(globals, /@layer base \{\s*:where\(\.material-symbols-outlined\) \{/);
-});
-
 test("provider lists use the shared one-column-on-phones card grid", () => {
   const page = read("src/app/(dashboard)/dashboard/providers/page.tsx");
   assert.match(page, /<ProviderCardGrid>/);

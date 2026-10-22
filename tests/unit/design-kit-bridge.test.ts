@@ -29,7 +29,6 @@ test("globals.css loads the self-hosted Keak fonts and the vendored kit CSS righ
     '@import "@fontsource/ibm-plex-mono/600.css";',
     '@import "@fontsource/ibm-plex-mono/700.css";',
     '@import "../../packages/ui-kit/src/ci-ui.css";',
-    '@import "material-symbols/outlined.css" layer(base);',
   ].map((needle) => css.indexOf(needle));
   assert.ok(
     order.every((i) => i >= 0),
@@ -63,9 +62,7 @@ test("the OmniRoute color tokens are aliases of kit tokens (no hex left in :root
     ["--color-primary", "var(--ci-color-accent)"],
     ["--color-primary-hover", "var(--ci-color-accent-hover)"],
     ["--color-accent", "var(--ci-color-accent)"],
-    ["--color-accent-hover", "var(--ci-color-accent-hover)"],
     ["--color-accent-light", "var(--ci-color-accent-surface-strong)"],
-    ["--grad-brand", "var(--ci-color-accent)"],
     ["--color-success", "var(--ci-color-success)"],
     ["--color-warning", "var(--ci-color-warning)"],
     ["--color-error", "var(--ci-color-danger)"],
@@ -77,7 +74,6 @@ test("the OmniRoute color tokens are aliases of kit tokens (no hex left in :root
     ["--color-fd-background", "var(--ci-color-background)"],
     ["--color-fd-primary", "var(--ci-color-accent)"],
     ["--table-header-bg", "var(--ci-color-surface-muted)"],
-    ["--table-cell-border", "var(--ci-color-border-subtle)"],
   ] as const) {
     assert.ok(root.includes(`${name}: ${target};`), `:root maps ${name} → ${target}`);
   }
@@ -238,22 +234,17 @@ test("flow surfaces still express state with --orch-status-* tokens, not fixed h
 // ── Guards carried verbatim in spirit from design-grid-background.test.ts (383c5dc5d479) that
 // stay true after the bridge; the grid/14px/gradient/STATUS_HEX ones were obsolete by design.
 test("DashboardLayout content shell is fluid up to ~4K before centering", () => {
-  // DashboardLayout.tsx is the UI_KIT_SHELL selector since trilha F: the content wrapper lives in
-  // the kit shell (DashboardShell) and in the legacy shell kept behind the flag.
-  for (const file of [
-    "src/shared/components/layouts/DashboardShell.tsx",
-    "src/shared/components/layouts/legacy/DashboardLayoutLegacy.tsx",
-  ]) {
-    const dashboardLayout = read(file);
-    assert.ok(
-      dashboardLayout.includes("max-w-[3840px] mx-auto"),
-      `${file}: content wrapper caps at 3840px (4K) and centers only beyond that`
-    );
-    assert.ok(
-      !dashboardLayout.includes("max-w-7xl"),
-      `${file}: the old 1280px max-w-7xl cap is gone`
-    );
-  }
+  // The content wrapper lives in the kit shell (DashboardShell), the only shell since KEA-7886 F4.
+  const file = "src/shared/components/layouts/DashboardShell.tsx";
+  const dashboardLayout = read(file);
+  assert.ok(
+    dashboardLayout.includes("max-w-[3840px] mx-auto"),
+    `${file}: content wrapper caps at 3840px (4K) and centers only beyond that`
+  );
+  assert.ok(
+    !dashboardLayout.includes("max-w-7xl"),
+    `${file}: the old 1280px max-w-7xl cap is gone`
+  );
 });
 
 test("DataTable is theme-aware via --table-* tokens, no color literal, no dead fallbacks", () => {
@@ -411,6 +402,23 @@ test("text-primary resolves to a readable primary ink; lime stays on bg/border/r
 
   // The inline ::selection rule colours TEXT, so it reads the ink too.
   assert.match(css, /::selection \{[^}]*\n\s*color: var\(--color-primary-ink\);/);
+});
+
+test("token aliases with no consumer are gone (KEA-7886 F4)", () => {
+  for (const token of [
+    "--grad-brand",
+    "--color-accent-hover",
+    "--color-traffic-red",
+    "--color-traffic-yellow",
+    "--color-traffic-green",
+    "--table-row-zebra",
+    "--table-row-hover",
+    "--table-cell-border",
+    "--table-row-selected",
+  ]) {
+    assert.ok(!css.includes(`${token}:`), `${token} is no longer declared`);
+  }
+  assert.doesNotMatch(css, /\.traffic-lights?\b/, "the unused .traffic-light(s) chrome is gone");
 });
 
 test("the primary Badge tone keeps dark ink in light and takes the lime ink in dark (F4)", () => {

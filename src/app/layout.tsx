@@ -101,9 +101,6 @@ export default async function RootLayout({ children }) {
             `,
           }}
         />
-        {/* Material Symbols icon font is self-hosted via globals.css
-            (@import "material-symbols/outlined.css") so icons render even when
-            the Google Fonts CDN is unreachable (#3695). */}
         <script
           dangerouslySetInnerHTML={{
             __html: `

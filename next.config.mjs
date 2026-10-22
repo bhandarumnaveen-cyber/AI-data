@@ -240,7 +240,6 @@ const nextConfig = {
       "date-fns",
       "lodash",
       "lodash-es",
-      "material-symbols",
       "next-intl",
     ],
   },

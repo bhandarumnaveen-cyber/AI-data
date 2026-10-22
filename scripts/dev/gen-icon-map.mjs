@@ -1,8 +1,9 @@
 #!/usr/bin/env node
-// Lista os nomes Material Symbols em uso (ligaduras, props icon=/iconRight=/emptyIcon= e
-// `icon: "..."` em constantes) e imprime um esqueleto de ICON_MAP para preencher à mão.
-// Só nomes do vocabulário real (node_modules/material-symbols/index.d.ts) são emitidos — strings
-// de aparência parecida (`true`, `asc`, `amber`, `anthropic`…) nunca entram no mapa.
+// Lista os nomes de ícone em uso (props icon=/iconRight=/emptyIcon=/leadingIcon=, `<Icon name>` e
+// `icon: "..."` em constantes) e imprime um esqueleto de ICON_MAP para os que ainda faltam.
+// O vocabulário é o dos nomes Material Symbols que as telas já usam, mas a fonte e o pacote
+// `material-symbols` saíram no F4 (KEA-7886): todo nome capturado precisa mapear para um ícone
+// Lucide em src/shared/constants/iconMap.ts, exceto as strings de NOT_ICON_NAMES abaixo.
 //   node scripts/dev/gen-icon-map.mjs           # esqueleto TS com os nomes que faltam no mapa atual
 //   node scripts/dev/gen-icon-map.mjs --names   # só os nomes, um por linha (usado pelo teste de cobertura)
 import fs from "node:fs";
@@ -11,65 +12,37 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
 const DIRS = ["src/app", "src/shared"];
+// `(?<![-\w])` keeps `data-provider-icon="generic"` and similar attributes out of the icon slots.
 const PATTERNS = [
-  /material-symbols-outlined[^>]*>\s*([a-z][a-z0-9_]+)\s*</g, // <span className="material-symbols-outlined">name</span>
-  /\b(?:icon|iconRight|emptyIcon|leadingIcon)=\"([a-z][a-z0-9_]+)\"/g, // prop icon="name"
+  /(?<![-\w])(?:icon|iconRight|emptyIcon|leadingIcon)=\"([a-z][a-z0-9_]+)\"/g, // prop icon="name"
   /\bicon:\s*\"([a-z][a-z0-9_]+)\"/g, // { icon: "name" } (sidebar sections, tabs)
-  /<Icon\b[^>]*\bname=\"([a-z][a-z0-9_]+)\"/g, // <Icon name="name" /> (already converted by the codemod)
+  /<Icon\b[^>]*\bname=\"([a-z][a-z0-9_]+)\"/g, // <Icon name="name" />
 ];
-// Ternários (`cond ? "a" : "b"`) só contam quando estão num slot de ícone: o conteúdo de um span
-// material-symbols-outlined ou a expressão de uma prop icon=/iconRight=/emptyIcon=/leadingIcon={…}.
+// Ternários (`cond ? "a" : "b"`) só contam quando estão num slot de ícone: a expressão de uma prop
+// icon=/iconRight=/emptyIcon=/leadingIcon={…} ou de <Icon name={…} />.
 const SLOT_PATTERNS = [
-  /material-symbols-outlined[^>]*>([^<]*)</g, // <span className="material-symbols-outlined">{cond ? "a" : "b"}</span>
-  /\b(?:icon|iconRight|emptyIcon|leadingIcon)=\{([^{}]*(?:\{[^{}]*\}[^{}]*)*)\}/g, // icon={cond ? "a" : "b"}
+  /(?<![-\w])(?:icon|iconRight|emptyIcon|leadingIcon)=\{([^{}]*(?:\{[^{}]*\}[^{}]*)*)\}/g, // icon={cond ? "a" : "b"}
   /<Icon\b[^>]*\bname=\{([^{}]*(?:\{[^{}]*\}[^{}]*)*)\}/g, // <Icon name={cond ? "a" : "b"} />
 ];
 const TERNARY_RE = /\?\s*\"([a-z][a-z0-9_]+)\"\s*:\s*\"([a-z][a-z0-9_]+)\"/g;
-const VOCABULARY_FILE = "node_modules/material-symbols/index.d.ts";
-// Pre-Symbols ("Material Icons") names that index.d.ts does not declare but the bundled
-// material-symbols-outlined.woff2 still ligates (checked in its GSUB ligature table,
-// material-symbols@0.47.0, 2026-10-19). Only the ones in use are listed; add a name here only
-// after confirming the font renders it — new code should prefer the canonical Symbols name
-// (expand_more → keyboard_arrow_down, push_pin → keep, emoji_events → trophy, …).
-export const LEGACY_LIGATURES = [
-  "auto_awesome",
-  "auto_fix_high",
-  "auto_fix_normal",
-  "business",
-  "cloud_queue",
-  "do_not_disturb",
-  "emoji_events",
-  "error_outline",
-  "expand_less",
-  "expand_more",
-  "file_download",
-  "file_upload",
-  "generating_tokens",
-  "insert_drive_file",
-  "push_pin",
-  "restore",
-  "tips_and_updates",
-];
 
-/** The names the installed `material-symbols` package declares (`type MaterialSymbols = ["123", …]`). */
-export function loadDtsNames(root = ROOT) {
-  const file = path.join(root, VOCABULARY_FILE);
-  if (!fs.existsSync(file)) {
-    throw new Error(`${VOCABULARY_FILE} not found under ${root} — run npm install first`);
-  }
-  const text = fs.readFileSync(file, "utf8");
-  const start = text.indexOf("type MaterialSymbols = [");
-  const end = text.indexOf("];", start);
-  if (start < 0 || end < 0) throw new Error(`${VOCABULARY_FILE}: MaterialSymbols tuple not found`);
-  return new Set([...text.slice(start, end).matchAll(/"([^"]+)"/g)].map((m) => m[1]));
-}
-
-/** The vocabulary the scanner accepts: loadDtsNames() plus LEGACY_LIGATURES. */
-export function loadMaterialNames(root = ROOT) {
-  const names = loadDtsNames(root);
-  for (const n of LEGACY_LIGATURES) names.add(n);
-  return names;
-}
+/**
+ * Strings the scanner sees in an `icon:` slot that never reach <Icon>. Each one was checked by
+ * hand (2026-10-21): provider-catalog `icon` fields are logo keys (no `<Icon name={provider.icon}>`
+ * exists), RoutingTab's tile `icon` field is never read, and Button's `icon: "icon"` is a size key.
+ * Add a name here only with the same proof; a real icon name belongs in ICON_MAP instead.
+ */
+export const NOT_ICON_NAMES = new Set([
+  "anthropic", // RoutingTab PROVIDER_TILE_DISPLAY.icon (field unused)
+  "dahl", // provider catalog logo keys (src/shared/constants/providers/**) ↓
+  "opencode",
+  "openference",
+  "proxy",
+  "server",
+  "unorouter",
+  "vector_polygon",
+  "icon", // Button ICON_SIZE / size map key `icon: "icon"`
+]);
 
 function walk(dir, out = []) {
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -81,13 +54,13 @@ function walk(dir, out = []) {
   return out;
 }
 
-/** Material names used in one source text (sorted, vocabulary-filtered). */
-export function collectNamesFromSource(text, vocabulary) {
+/** Icon names used in one source text (sorted, NOT_ICON_NAMES removed). */
+export function collectNamesFromSource(text) {
   const names = new Set();
   const add = (g) => {
-    if (g && vocabulary.has(g)) names.add(g);
+    if (g && !NOT_ICON_NAMES.has(g)) names.add(g);
   };
-  if (/material-symbols-outlined|icon[:=]|<Icon\b/.test(text)) {
+  if (/icon[:=]|<Icon\b/.test(text)) {
     for (const re of PATTERNS)
       for (const m of text.matchAll(re)) for (const g of m.slice(1)) add(g);
     for (const re of SLOT_PATTERNS)
@@ -98,12 +71,10 @@ export function collectNamesFromSource(text, vocabulary) {
 }
 
 export function collectNames(root = ROOT) {
-  const vocabulary = loadMaterialNames(root);
   const names = new Set();
   for (const dir of DIRS)
     for (const file of walk(path.join(root, dir)))
-      for (const n of collectNamesFromSource(fs.readFileSync(file, "utf8"), vocabulary))
-        names.add(n);
+      for (const n of collectNamesFromSource(fs.readFileSync(file, "utf8"))) names.add(n);
   return [...names].sort();
 }
 
@@ -124,7 +95,10 @@ if (import.meta.url === pathToFileURL(process.argv[1]).href) {
   const have = existingMap();
   const missing = names.filter((n) => !have.has(n));
   console.log(
-    `// ${names.length} Material names in use; ${missing.length} missing from ICON_MAP. Paste into iconMap.ts and replace null with a Lucide import.`
+    `// ${names.length} icon names in use; ${missing.length} missing from ICON_MAP. Map each real icon to a Lucide import in iconMap.ts;`
   );
-  for (const n of missing) console.log(`  ${n}: null,`);
+  console.log(
+    "// not an icon (logo key, size key… that never reaches <Icon>)? add it to NOT_ICON_NAMES above, with the proof."
+  );
+  for (const n of missing) console.log(`  ${n}: /* Lucide */,`);
 }

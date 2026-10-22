@@ -1,5 +1,7 @@
 // @vitest-environment jsdom
 import React from "react";
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import { cleanup, render } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
@@ -16,15 +18,6 @@ vi.mock("@/shared/components/Header", () => ({
   default: () => <header data-testid="kit-header" />,
 }));
 vi.mock("@/shared/components/CommandPalette", () => ({ default: () => null }));
-vi.mock("@/shared/components/layouts/legacy/SidebarLegacy", () => ({
-  default: () => <aside data-testid="legacy-sidebar" />,
-}));
-vi.mock("@/shared/components/layouts/legacy/HeaderLegacy", () => ({
-  default: () => <header data-testid="legacy-header" />,
-}));
-vi.mock("@/shared/components/layouts/legacy/CommandPaletteLegacy", () => ({
-  default: () => null,
-}));
 vi.mock("@/shared/components/MaintenanceBanner", () => ({ default: () => null }));
 vi.mock("@/shared/components/NavigationProgress", () => ({ default: () => null }));
 
@@ -32,10 +25,10 @@ const { default: DashboardLayout } = await import("@/shared/components/layouts/D
 
 afterEach(() => cleanup());
 
-describe("DashboardLayout shell switch (UI_KIT_SHELL)", () => {
-  it("shell=kit renders SidebarProvider + SidebarInset with the kit sidebar/header", () => {
+describe("DashboardLayout — the kit shell is the only shell (KEA-7886 F4)", () => {
+  it("renders SidebarProvider + SidebarInset with the kit sidebar/header", () => {
     const { container, getByTestId } = render(
-      <DashboardLayout shell="kit">
+      <DashboardLayout>
         <p>page</p>
       </DashboardLayout>
     );
@@ -62,7 +55,7 @@ describe("DashboardLayout shell switch (UI_KIT_SHELL)", () => {
     })) as unknown as typeof window.matchMedia;
     try {
       const { container } = render(
-        <DashboardLayout shell="kit">
+        <DashboardLayout>
           <p>page</p>
         </DashboardLayout>
       );
@@ -84,7 +77,7 @@ describe("DashboardLayout shell switch (UI_KIT_SHELL)", () => {
 
   it("on desktop the skip link precedes the kit sidebar in document order", () => {
     render(
-      <DashboardLayout shell="kit">
+      <DashboardLayout>
         <p>page</p>
       </DashboardLayout>
     );
@@ -95,17 +88,35 @@ describe("DashboardLayout shell switch (UI_KIT_SHELL)", () => {
     expect(skip!.compareDocumentPosition(aside!) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   });
 
-  it("shell=legacy renders the untouched legacy shell and nothing from the kit (kill switch)", () => {
-    const { container, getAllByTestId, getByTestId, queryByTestId } = render(
-      <DashboardLayout shell="legacy">
+  it("starts expanded by default and collapsed when the server cookie says so", () => {
+    const { container, unmount } = render(
+      <DashboardLayout>
         <p>page</p>
       </DashboardLayout>
     );
-    expect(container.querySelector(".dashboard-sidebar-desktop")).not.toBeNull();
-    // The legacy shell mounts its Sidebar twice: the desktop column and the mobile drawer.
-    expect(getAllByTestId("legacy-sidebar")).toHaveLength(2);
-    getByTestId("legacy-header");
-    expect(queryByTestId("kit-sidebar")).toBeNull();
-    expect(container.querySelector("[data-slot=sidebar-provider]")).toBeNull();
+    const provider = () => container.querySelector("[data-slot=sidebar-provider]");
+    expect(provider()!.getAttribute("data-state")).toBe("expanded");
+    unmount();
+    const collapsed = render(
+      <DashboardLayout sidebarDefaultOpen={false}>
+        <p>page</p>
+      </DashboardLayout>
+    );
+    expect(
+      collapsed.container.querySelector("[data-slot=sidebar-provider]")!.getAttribute("data-state")
+    ).toBe("collapsed");
+  });
+
+  it("has no shell switch left: no shell prop, no legacy import, no UI_KIT_SHELL read", () => {
+    const layout = readFileSync(
+      resolve(process.cwd(), "src/shared/components/layouts/DashboardLayout.tsx"),
+      "utf8"
+    );
+    expect(layout).not.toMatch(/\bshell\??:|shell=|DashboardShellMode|[Ll]egacy/);
+    const serverLayout = readFileSync(
+      resolve(process.cwd(), "src/app/(dashboard)/layout.tsx"),
+      "utf8"
+    );
+    expect(serverLayout).not.toMatch(/UI_KIT_SHELL|isUiKitShellEnabled|shell=/);
   });
 });

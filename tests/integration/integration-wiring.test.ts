@@ -465,20 +465,17 @@ describe("Barrel Exports — shared/components/layouts", () => {
 // ─── Layout and Page Integration ────────────────────
 
 describe("DashboardLayout Integration", () => {
-  // DashboardLayout.tsx selects the shell (UI_KIT_SHELL); both shells mount the toast system.
+  // DashboardLayout.tsx renders the kit shell (DashboardShell), which mounts the toast system.
   const src = readProjectFile("src/shared/components/layouts/DashboardShell.tsx");
-  const legacySrc = readProjectFile(
-    "src/shared/components/layouts/legacy/DashboardLayoutLegacy.tsx"
-  );
 
   it("should render NotificationToast globally", () => {
     assert.ok(src, "src/shared/components/layouts/DashboardShell.tsx should exist");
     assert.match(src, /NotificationToast/);
-    assert.ok(
-      legacySrc,
-      "src/shared/components/layouts/legacy/DashboardLayoutLegacy.tsx should exist"
+    assert.match(
+      readProjectFile("src/shared/components/layouts/DashboardLayout.tsx"),
+      /<DashboardShell\b/,
+      "DashboardLayout renders the kit shell"
     );
-    assert.match(legacySrc, /NotificationToast/);
   });
 
   it.skip("should include Breadcrumbs in page wrapper", () => {
