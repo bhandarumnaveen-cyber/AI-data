@@ -7,7 +7,7 @@
  * (#7548). Other `httpBackedChat` callers (e.g. duckduckgo-web) keep their
  * own independent fingerprint, which never needs to match a solved cookie.
  */
-import { CLAUDE_WEB_FINGERPRINT } from "../config/claudeWebFingerprint.ts";
+import { claudeWebFingerprint } from "../config/claudeWebFingerprint.ts";
 
 export interface HttpBackedChatFingerprint {
   userAgent: string;
@@ -25,5 +25,7 @@ const DUCKDUCKGO_FALLBACK_FINGERPRINT: HttpBackedChatFingerprint = {
 export function resolveHttpBackedChatFingerprint(
   chatUrlMatchDomain: string
 ): HttpBackedChatFingerprint {
-  return chatUrlMatchDomain === "claude.ai" ? CLAUDE_WEB_FINGERPRINT : DUCKDUCKGO_FALLBACK_FINGERPRINT;
+  return chatUrlMatchDomain === "claude.ai"
+    ? claudeWebFingerprint()
+    : DUCKDUCKGO_FALLBACK_FINGERPRINT;
 }

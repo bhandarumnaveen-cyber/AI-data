@@ -1,5 +1,6 @@
 // @ts-nocheck
 import "./setupPolyfill.ts";
+import { newestFirefoxProfile } from "./tlsClient.ts";
 import { AsyncLocalStorage } from "node:async_hooks";
 import { fetch as undiciFetch, Agent } from "undici";
 import {
@@ -100,15 +101,17 @@ function isTlsFingerprintEnabled() {
  * fingerprint (e.g. MaxAI expects a Windows Firefox-150 client) override it here.
  * Returns undefined to keep the tlsClient default (chrome_124 / macos).
  */
-const TLS_PROVIDER_PROFILE: Record<string, { browser: string; os: string }> = {
-  maxai: { browser: "firefox_150", os: "windows" },
+const TLS_PROVIDER_PROFILE: Record<string, () => { browser: string; os: string }> = {
+  maxai: () => ({ browser: newestFirefoxProfile(), os: "windows" }),
 };
 
 type TlsProfileResult = { browserProfile?: string; os?: string };
 function tlsProfileForProvider(provider: string | null | undefined): TlsProfileResult {
   if (!provider) return {};
-  const p = TLS_PROVIDER_PROFILE[provider.trim().toLowerCase()];
-  return p ? { browserProfile: p.browser, os: p.os } : {};
+  const build = TLS_PROVIDER_PROFILE[provider.trim().toLowerCase()];
+  if (!build) return {};
+  const p = build();
+  return { browserProfile: p.browser, os: p.os };
 }
 
 type TlsClientLike = {

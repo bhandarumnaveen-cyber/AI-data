@@ -12,7 +12,7 @@
 
 import type { Browser, Page } from "playwright";
 import {
-  CLAUDE_WEB_FINGERPRINT,
+  claudeWebFingerprint,
   CLAUDE_WEB_FINGERPRINT_VERSION,
 } from "../config/claudeWebFingerprint.ts";
 
@@ -89,7 +89,7 @@ export async function solveTurnstile(options?: {
     const { chromium } = await import("playwright");
     browser = await chromium.launch({ headless });
     const context = await browser.newContext({
-      userAgent: CLAUDE_WEB_FINGERPRINT.userAgent,
+      userAgent: claudeWebFingerprint().userAgent,
       viewport: { width: 1280, height: 720 },
       ignoreHTTPSErrors: process.env.OMNIROUTE_TURNSTILE_IGNORE_TLS_ERRORS === "true",
     });
@@ -152,7 +152,7 @@ export async function getCfClearanceToken(options?: {
   force?: boolean;
   headless?: boolean;
 }): Promise<string> {
-  const cacheKey = `claude-cf-clearance-${CLAUDE_WEB_FINGERPRINT_VERSION}`;
+  const cacheKey = `claude-cf-clearance-${CLAUDE_WEB_FINGERPRINT_VERSION}-${claudeWebFingerprint().version}`;
   const cached = tokenCache.get(cacheKey);
 
   if (cfClearanceTokenOverride) {
@@ -196,7 +196,7 @@ export function getCacheStatus(): {
   hasCached: boolean;
   expiresIn?: number;
 } {
-  const cacheKey = `claude-cf-clearance-${CLAUDE_WEB_FINGERPRINT_VERSION}`;
+  const cacheKey = `claude-cf-clearance-${CLAUDE_WEB_FINGERPRINT_VERSION}-${claudeWebFingerprint().version}`;
   const cached = tokenCache.get(cacheKey);
 
   if (!cached) {
