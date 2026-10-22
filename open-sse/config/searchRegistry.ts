@@ -143,6 +143,10 @@ export const SEARCH_PROVIDERS: Record<string, SearchProviderConfig> = {
     authType: "apikey",
     authHeader: "bearer",
     costPerQuery: 0.008,
+    // 1 credit ($0.008) for basic / fast / ultra-fast, 2 credits for advanced:
+    // https://docs.tavily.com/documentation/api-credits
+    costByMode: { advanced: 0.016 },
+    costModeField: "search_depth",
     freeMonthlyQuota: 1000,
     searchTypes: ["web", "news", "finance"],
     defaultMaxResults: 5,

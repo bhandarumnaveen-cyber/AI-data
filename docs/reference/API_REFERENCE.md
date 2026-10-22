@@ -780,9 +780,10 @@ longer forwarded.
 Cost accounting is the flat registry `costPerQuery`, except for Exa, which follows Exa's
 own pricing: $0.007 per call for `auto` (and the legacy `fast`) or $0.004 for `lite` (and the
 legacy `instant`), covering 10 results; $0.001 for each further result; and $0.001 per
-returned result when `contents.summary` is set. Tavily bills
-`search_depth: "advanced"` at more credits per call, and that difference is not reflected in
-`usage.search_cost_usd`.
+returned result when `contents.summary` is set. Tavily is recorded at 1 credit ($0.008) for
+`search_depth` `basic`, `fast` and `ultra-fast`, and 2 credits ($0.016) for `advanced`
+([Tavily API credits](https://docs.tavily.com/documentation/api-credits)). A call with
+`auto_parameters: true` that Tavily upgrades to advanced is still recorded at 1 credit.
 
 ---
 
