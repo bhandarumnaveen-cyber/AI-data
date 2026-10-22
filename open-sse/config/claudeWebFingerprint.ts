@@ -10,17 +10,30 @@
  * Every part of the claude-web pipeline that talks to claude.ai — the
  * Turnstile solver, the direct-fetch executor, and the httpBackedChat
  * fast path — MUST derive its User-Agent / Client-Hints headers from this
- * single constant so they can never drift apart again.
+ * single function so they can never drift apart again.
  *
- * Platform choice: Linux, matching the `chrome_146` TLS/JA3 profile used by
- * `claudeTlsClient.ts` and the browser-pool default (`browserPool.ts`).
+ * Platform choice: Linux, matching the TLS client and the browser-pool default.
  */
-export const CLAUDE_WEB_FINGERPRINT = {
-  userAgent:
-    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
-  secChUa: '"Chromium";v="149", "Not-A.Brand";v="24", "Google Chrome";v="149"',
-  secChUaPlatform: '"Linux"',
-} as const;
+import { chromeUserAgent, newestChromeProfile } from "../utils/tlsClient.ts";
+
+export interface ClaudeWebFingerprint {
+  userAgent: string;
+  secChUa: string;
+  secChUaPlatform: string;
+  /** Major version shared with the TLS profile, so a bumped library invalidates old cookies. */
+  version: string;
+}
+
+/** Linux, matching the browser-pool default and the TLS client. */
+export function claudeWebFingerprint(): ClaudeWebFingerprint {
+  const version = newestChromeProfile().split("_")[1];
+  return {
+    userAgent: chromeUserAgent("X11; Linux x86_64", version),
+    secChUa: `"Chromium";v="${version}", "Not-A.Brand";v="24", "Google Chrome";v="${version}"`,
+    secChUaPlatform: '"Linux"',
+    version,
+  };
+}
 
 /**
  * Bump this whenever `CLAUDE_WEB_FINGERPRINT` changes so any previously

@@ -33,6 +33,11 @@ const TRANSPORT_PROFILES = {
 // Other source files that hand a browser profile directly to wreq-js.
 const SOURCES = [
   "src/app/api/internal/codex-responses-ws/route.ts",
+  "open-sse/executors/codex.ts",
+  "open-sse/executors/codex/appServerClient.ts",
+  "open-sse/executors/grok-web.ts",
+  "open-sse/executors/notion-web.ts",
+  "open-sse/utils/proxyFetch.ts",
   "scripts/dev/responses-ws-proxy.mjs",
   ...Object.keys(TRANSPORT_PROFILES),
 ];
@@ -62,16 +67,37 @@ test("#5591 all configured browser TLS profiles exist in pinned wreq-js", () => 
     });
   }
 
+  // Executors must not freeze a profile literal. A version the library ships
+  // still passes the check above, so this one rejects the literal itself.
+  const NO_LITERAL = [
+    "open-sse/executors/codex.ts",
+    "open-sse/executors/codex/appServerClient.ts",
+    "open-sse/executors/grok-web.ts",
+    "open-sse/executors/notion-web.ts",
+    "open-sse/utils/proxyFetch.ts",
+  ];
+  for (const rel of NO_LITERAL) {
+    const source = fs.readFileSync(path.join(ROOT, rel), "utf8");
+    assert.doesNotMatch(
+      source,
+      /(?:browser|tlsProfile):\s*["'](?:chrome|firefox)_/,
+      `${rel} freezes a browser profile instead of reading the library`
+    );
+  }
+
   for (const [rel, [profile, os]] of Object.entries(TRANSPORT_PROFILES)) {
     const source = fs.readFileSync(path.join(ROOT, rel), "utf8");
     assert.ok(supported.has(profile), `${rel} expected unsupported ${profile}`);
 
-    if (rel.endsWith("claudeTlsClient.ts")) {
-      assert.match(source, /CLAUDE_TLS_BROWSER_MAJOR_VERSION = "146"/);
-      assert.match(source, /tlsProfile: `chrome_\$\{CLAUDE_TLS_BROWSER_MAJOR_VERSION\}`/);
-    } else if (rel.endsWith("utils\/tlsClient.ts")) {
-      assert.match(source, /browser: "chrome_124"/);
+    if (rel.endsWith("utils/tlsClient.ts")) {
+      assert.match(source, /newestChromeProfile\(\)/);
       assert.match(source, /os: "macos"/);
+    } else if (/\/(grok|notion|lmarena|claude)TlsClient\.ts$/.test(rel)) {
+      assert.match(source, /tlsProfile: newestChromeProfile,/);
+      assert.match(source, new RegExp(`emulationOs: ["']${os}["']`));
+    } else if (rel.endsWith("perplexityTlsClient.ts")) {
+      assert.match(source, /tlsProfile: newestFirefoxProfile,/);
+      assert.match(source, new RegExp(`emulationOs: ["']${os}["']`));
     } else {
       assert.match(source, new RegExp(`tlsProfile: ["']${profile}["']`));
       assert.match(source, new RegExp(`emulationOs: ["']${os}["']`));

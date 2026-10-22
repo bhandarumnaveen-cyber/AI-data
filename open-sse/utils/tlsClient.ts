@@ -86,6 +86,54 @@ function getWreqRuntimeModule(): Record<string, unknown> {
   throw wreqRuntimeModuleError ?? new Error("wreq-js runtime unavailable");
 }
 
+// Newest plain profile of a family that the installed wreq-js ships, so the
+// default follows the library instead of a version frozen in source.
+export function newestProfile(family: string, profiles: readonly string[]): string | null {
+  let best: string | null = null;
+  let bestVersion = -1;
+  const prefix = `${family}_`;
+  for (const profile of profiles) {
+    if (!profile.startsWith(prefix)) continue;
+    const version = Number(profile.slice(prefix.length));
+    if (Number.isInteger(version) && version > bestVersion) {
+      best = profile;
+      bestVersion = version;
+    }
+  }
+  return best;
+}
+
+let newestChrome: string | null = null;
+
+export function newestChromeProfile(): string {
+  if (newestChrome) return newestChrome;
+  const getProfiles = getWreqRuntimeModule().getProfiles;
+  const profiles = typeof getProfiles === "function" ? getProfiles() : [];
+  newestChrome = newestProfile("chrome", Array.isArray(profiles) ? profiles : []) ?? "chrome_124";
+  return newestChrome;
+}
+
+let newestFirefox: string | null = null;
+
+export function newestFirefoxProfile(): string {
+  if (newestFirefox) return newestFirefox;
+  const getProfiles = getWreqRuntimeModule().getProfiles;
+  const profiles = typeof getProfiles === "function" ? getProfiles() : [];
+  newestFirefox = newestProfile("firefox", Array.isArray(profiles) ? profiles : []) ?? "firefox_148";
+  return newestFirefox;
+}
+
+export function chromeUserAgent(platform: string, version: string): string {
+  return (
+    `Mozilla/5.0 (${platform}) AppleWebKit/537.36 (KHTML, like Gecko) ` +
+    `Chrome/${version}.0.0.0 Safari/537.36`
+  );
+}
+
+export function firefoxUserAgent(platform: string, version: string): string {
+  return `Mozilla/5.0 (${platform}; rv:${version}.0) Gecko/20100101 Firefox/${version}.0`;
+}
+
 const TRANSPORT_POOL_KEY = Symbol.for("omniroute.wreqTransportPool.instance");
 const TRANSPORT_POOL_LIFECYCLE_KEY = Symbol.for("omniroute.wreqTransportPool.lifecycle");
 type WreqLifecycleResource = {
@@ -882,7 +930,7 @@ export class TlsClient {
     this.reserveSessionCapacity(key);
 
     const sessionOpts: Record<string, unknown> = {
-      browser: "chrome_124",
+      browser: newestChromeProfile(),
       os: "macos",
     };
     if (resolvedProxy) sessionOpts.proxy = resolvedProxy;

@@ -50,12 +50,12 @@ import {
   cleanGrokThinkingText,
   extractStructuredReasoning,
 } from "./grok-web/text-cleanup.ts";
+import { chromeUserAgent, newestChromeProfile } from "../utils/tlsClient.ts";
 
 // ─── Constants ──────────────────────────────────────────────────────────────
 
 const GROK_CHAT_API = "https://grok.com/rest/app-chat/conversations/new";
-const GROK_USER_AGENT =
-  "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36";
+const GROK_USER_AGENT = chromeUserAgent("X11; Linux x86_64", newestChromeProfile().split("_")[1]);
 const GROK_PUBLIC_UPSTREAM_ERROR = "Grok upstream error";
 
 function sanitizeGrokUpstreamError(message: unknown): string {

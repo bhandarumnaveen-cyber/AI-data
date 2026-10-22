@@ -63,6 +63,7 @@ import {
   type NotionAgentOptions,
 } from "../services/notionTranscriptBuilder.ts";
 import { tlsFetchNotion } from "../services/notionTlsClient.ts";
+import { chromeUserAgent, newestChromeProfile } from "../utils/tlsClient.ts";
 import { currentAppliedProxySink } from "../utils/proxyFetch.ts";
 
 // Re-exported for unit tests that destructure `mod.<name>` on this module.
@@ -86,8 +87,7 @@ export {
 // Both app.notion.com and www.notion.so work; prefer the AI surface host.
 const BASE_URL = "https://app.notion.com";
 const NOTION_URL = `${BASE_URL}/api/v3/runInferenceTranscript`;
-const USER_AGENT =
-  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36";
+const USER_AGENT = chromeUserAgent("Windows NT 10.0; Win64; x64", newestChromeProfile().split("_")[1]);
 // Match a recent live browser capture (web_providers/notion.txt, 2026-07-20).
 const NOTION_CLIENT_VERSION = "23.13.20260720.1949";
 
