@@ -771,6 +771,10 @@ overrides the mapped one.
 Exa results keep `id`, `highlight_scores`, `summary`, `subpages`, `entities` and `extras` in
 `provider_raw`. Tavily results keep `images` and `favicon`.
 
+Linkup search cost is recorded at $0.005 for `depth` `fast` and `standard` and $0.05 for
+`deep` ([Linkup pricing](https://docs.linkup.so/pages/documentation/development/pricing)),
+whether `depth` comes from `provider_options` or the connection's settings.
+
 Exa `type: "lite"` (Exa 3.0) accepts a smaller set of fields and rejects the whole request
 when any other field is set. For lite, `additionalQueries`, `systemPrompt` and every
 `contents` key except `text` and `highlights` are dropped before the call. The deprecated

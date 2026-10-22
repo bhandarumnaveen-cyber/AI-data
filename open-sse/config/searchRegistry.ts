@@ -212,6 +212,10 @@ export const SEARCH_PROVIDERS: Record<string, SearchProviderConfig> = {
     authType: "apikey",
     authHeader: "bearer",
     costPerQuery: 0.005,
+    // searchResults output: fast / standard $0.005, deep $0.05 per call:
+    // https://docs.linkup.so/pages/documentation/development/pricing
+    costByMode: { deep: 0.05 },
+    costModeField: "depth",
     freeMonthlyQuota: 1000,
     searchTypes: ["web"],
     defaultMaxResults: 5,
