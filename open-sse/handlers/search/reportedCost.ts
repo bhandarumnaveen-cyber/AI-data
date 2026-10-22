@@ -103,9 +103,11 @@ export function readReportedUsage(
 
 /**
  * Registry price of one successful call. Flat `costPerQuery`, unless the provider
- * declares `costByMode`: then the price of the `mode` sent in the request body
- * (unknown/absent mode → `costPerQuery`), plus `extraResultCost` for every result
- * returned above `includedResults`. Rounded to 6 decimals (no float dust).
+ * declares `costByMode`: then the price of the mode sent in the request body field
+ * `costModeField` (default `mode`; unknown/absent mode → `costPerQuery`), plus
+ * `extraResultCost` for every result returned above `includedResults`, plus
+ * `contentsCostPerResult[key]` per result for each `contents.<key>` the request
+ * sets. Rounded to 6 decimals (no float dust).
  */
 export function computeSearchCostUsd(
   config: SearchProviderConfig,
@@ -114,16 +116,23 @@ export function computeSearchCostUsd(
 ): number {
   const byMode = config.costByMode;
   if (!byMode) return config.costPerQuery;
-  let mode: unknown;
+  let parsed: Record<string, unknown> | undefined;
   try {
-    mode = typeof requestBody === "string" ? JSON.parse(requestBody)?.mode : undefined;
+    parsed = typeof requestBody === "string" ? JSON.parse(requestBody) : undefined;
   } catch {
-    mode = undefined;
+    parsed = undefined;
   }
+  const mode = parsed?.[config.costModeField ?? "mode"];
   const base =
     typeof mode === "string" && Object.hasOwn(byMode, mode) ? byMode[mode] : config.costPerQuery;
   const extraResults = Math.max(0, resultCount - (config.includedResults ?? resultCount));
-  const total = base + extraResults * (config.extraResultCost ?? 0);
+  let total = base + extraResults * (config.extraResultCost ?? 0);
+  const contents = parsed?.contents;
+  if (config.contentsCostPerResult && contents && typeof contents === "object") {
+    for (const [key, perResult] of Object.entries(config.contentsCostPerResult)) {
+      if ((contents as Record<string, unknown>)[key]) total += perResult * resultCount;
+    }
+  }
   return Math.round(total * 1e6) / 1e6;
 }
 
