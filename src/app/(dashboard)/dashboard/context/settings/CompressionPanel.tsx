@@ -327,6 +327,14 @@ export default function CompressionPanel() {
   const [saving, setSaving] = useState(false);
   const [status, setStatus] = useState<"" | "saved" | "error">("");
   const saveGenRef = useRef(0);
+  const statusTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(
+    () => () => {
+      if (statusTimerRef.current !== null) clearTimeout(statusTimerRef.current);
+      saveGenRef.current++;
+    },
+    []
+  );
   // The last config the server confirmed.
   const lastConfirmedRef = useRef(config);
   // Saves still waiting on the server, oldest first.
@@ -488,7 +496,8 @@ export default function CompressionPanel() {
     if (batchFailedRef.current) return;
     setStatus("saved");
     const latestGen = saveGenRef.current;
-    setTimeout(() => {
+    if (statusTimerRef.current !== null) clearTimeout(statusTimerRef.current);
+    statusTimerRef.current = setTimeout(() => {
       if (latestGen === saveGenRef.current) setStatus("");
     }, SAVED_STATUS_CLEAR_MS);
   };
