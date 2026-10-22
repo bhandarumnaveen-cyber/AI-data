@@ -52,10 +52,8 @@ export function requiresReasoningContentPresence(provider: unknown, model: unkno
     .trim()
     .toLowerCase();
   return (
-    normalizedProvider === "deepseek" ||
-    /(^|\/)deepseek/i.test(normalizedModel) ||
     normalizedProvider === "xiaomi-mimo" ||
     /(^|\/)mimo/i.test(normalizedModel) ||
-    ["opencode", "opencode-go", "opencode-zen"].includes(normalizedProvider)
+    ["opencode-go", "opencode-zen"].includes(normalizedProvider)
   );
 }

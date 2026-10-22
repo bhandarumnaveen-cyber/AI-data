@@ -1,4 +1,5 @@
 import { hasTrustedEmptyTurn } from "./emptyTurnPolicy.ts";
+import { createCompletionDrain } from "./streamCompletionDrain.ts";
 import type { StreamControllerOptions } from "./streamControllerTypes.ts";
 import { trackPendingRequest } from "@/lib/usageDb";
 import { STREAM_ACTIVE_TIMEOUT_MS, STREAM_IDLE_TIMEOUT_MS } from "../config/constants.ts";
@@ -8,6 +9,7 @@ import { PENDING_REQUEST_CLEARED_MARKER } from "./stream.ts";
 import { createCompletedResponsesToolHandoffWatcher } from "./responsesToolHandoff.ts";
 import { createStreamContentWatcher, type StreamContentWatcher } from "./streamReadiness.ts";
 import { hasOpenReasoning } from "./emptyTurnRetry.ts";
+import { createStallWatchdog } from "./streamStallWatchdog.ts";
 import {
   buildSyntheticResponsesFailureId,
   SYNTHETIC_RESPONSES_SEQUENCE_NUMBER,
@@ -315,8 +317,8 @@ export function createStreamController({
     handleDisconnect: (reason = "client_closed") => {
       if (disconnected) return;
       if (clientTerminalSeen) {
-        // Transfer transport ownership before completion releases the callback.
-        completedToolHandoffDrain?.();
+        // Start the drain before completion releases its registered callback.
+        if (clientDisconnectGracePeriodMs > 0) completedToolHandoffDrain?.();
         controller.handleComplete();
         return;
       }
@@ -669,35 +671,10 @@ export function createDisconnectAwareStream(
   let terminalTail = "";
   let clientTerminalSeen = false;
   let bytesWereForwarded = false;
-  let disconnectDrainStarted = false;
-
-  const drainAfterDisconnect = () => {
-    if (disconnectDrainStarted) return;
-    disconnectDrainStarted = true;
-    const timeoutReason = clientTerminalSeen
-      ? "terminal_stream_grace_expired"
-      : "completed_tool_handoff_grace_expired";
-    const gracePeriodMs = Math.max(0, Number(streamController.clientDisconnectGracePeriodMs) || 0);
-    const timeout = setTimeout(() => {
-      streamController.abort();
-      void Promise.allSettled([reader.cancel(timeoutReason), writer.abort(timeoutReason)]);
-    }, gracePeriodMs);
-
-    void (async () => {
-      try {
-        while (true) {
-          const { done } = await reader.read();
-          if (done) break;
-        }
-        streamController.handleComplete();
-      } catch (error) {
-        streamController.handleError(error);
-      } finally {
-        clearTimeout(timeout);
-      }
-    })();
-  };
-  streamController.registerCompletedToolHandoffDrain?.(drainAfterDisconnect);
+  const completionDrain = createCompletionDrain(reader, writer, streamController, () =>
+    clientTerminalSeen ? "terminal_stream_grace_expired" : "completed_tool_handoff_grace_expired"
+  );
+  streamController.registerCompletedToolHandoffDrain?.(completionDrain.start);
 
   const noteClientChunk = (chunk: unknown) => {
     if (!(chunk instanceof Uint8Array)) return;
@@ -734,9 +711,14 @@ export function createDisconnectAwareStream(
     {
       async pull(controller) {
         if (!streamController.isConnected()) {
-          // Cancel a gone client's upstream; a completed terminal stream drains for late usage.
+          // Closing our side alone leaves the upstream body being pulled by the
+          // transform pipe. Cancel it so the provider stops generating for a
+          // client that is gone. A completed terminal stream with a grace window
+          // hands the inner reader to the bounded drain so late usage can flush.
           if (clientTerminalSeen) {
-            drainAfterDisconnect();
+            if (Number(streamController.clientDisconnectGracePeriodMs) > 0) {
+              completionDrain.start();
+            }
           } else if (streamController.shouldDeferCompletedToolHandoff?.() !== true) {
             const reason = "client_disconnected";
             void Promise.allSettled([reader.cancel(reason), writer.abort(reason)]);
@@ -801,8 +783,8 @@ export function createDisconnectAwareStream(
           noteClientChunk(value);
         } catch (error) {
           if (!streamController.isConnected()) {
-            // A started drain owns the reader; cancelling here would drop its late usage.
-            if (!disconnectDrainStarted) {
+            // A pending pull can lose enqueue to cancellation after the drain takes ownership.
+            if (!completionDrain.isStarted()) {
               reader.cancel(new Error("Downstream disconnected")).catch(() => {});
             }
             try {
@@ -852,14 +834,18 @@ export function createDisconnectAwareStream(
       },
 
       async cancel(reason) {
-        if (clientTerminalSeen) {
-          streamController.handleComplete();
-          drainAfterDisconnect();
-          return;
-        }
         const deferCompletedToolHandoff =
           streamController.shouldDeferCompletedToolHandoff?.() === true;
-        streamController.handleDisconnect(reason || "cancelled");
+        if (clientTerminalSeen) {
+          if (Number(streamController.clientDisconnectGracePeriodMs) > 0) {
+            completionDrain.start();
+            streamController.handleComplete();
+            return;
+          }
+          streamController.handleComplete();
+        } else {
+          streamController.handleDisconnect(reason || "cancelled");
+        }
         if (deferCompletedToolHandoff) return;
         await Promise.allSettled([reader.cancel(reason), writer.abort(reason)]);
       },
@@ -927,7 +913,6 @@ export function pipeWithDisconnect(
     );
   }
 
-  let stallTimer: ReturnType<typeof setTimeout> | null = null;
   let activeTimer: ReturnType<typeof setTimeout> | null = null;
   // Erroring the upstream tap unblocks a downstream reader suspended on the
   // transform pipe; aborting the controller alone does not always do that.
@@ -935,10 +920,11 @@ export function pipeWithDisconnect(
   let stallFired = false;
   let activeFired = false;
 
-  const clearStall = () => {
-    if (stallTimer) clearTimeout(stallTimer);
-    stallTimer = null;
-  };
+  // Per-chunk timer by default; one interval with SSE_STALL_WATCHDOG=interval.
+  const stallWatchdog = createStallWatchdog(stallEnabled ? stallTimeoutMs : 0, () =>
+    triggerWatchdog("stall")
+  );
+  const clearStall = stallWatchdog.clear;
   const clearActive = () => {
     if (activeTimer) clearTimeout(activeTimer);
     activeTimer = null;
@@ -970,11 +956,7 @@ export function pipeWithDisconnect(
       console.debug(`[STREAM-HANDLER] ${kind} watchdog abort failed:`, e);
     }
   };
-  const armStall = () => {
-    if (!stallEnabled) return;
-    clearStall();
-    stallTimer = setTimeout(() => triggerWatchdog("stall"), stallTimeoutMs);
-  };
+  const armStall = stallWatchdog.arm;
   const armActive = () => {
     if (!activeEnabled) return;
     clearActive();
