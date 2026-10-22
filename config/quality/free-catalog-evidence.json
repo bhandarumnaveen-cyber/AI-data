@@ -41,7 +41,6 @@
     "ollama-cloud/qwen3.5:397b",
     "opencode-zen/opencode/big-pickle",
     "opencode-zen/opencode/deepseek-v4.1-flash-free",
-    "opencode-zen/opencode/mimo-v2.5-free",
     "opencode-zen/opencode/nemotron-3-super-free",
     "opencode-zen/opencode/nemotron-3-ultra-free",
     "opencode-zen/opencode/north-mini-code-free",
@@ -64,6 +63,18 @@
     "tencent/hunyuan-pro"
   ],
   "evidence": [
+    {
+      "provider": "opencode-zen",
+      "modelId": "opencode/mimo-v2.6-flash-free",
+      "catalogHash": "21ded89fa51fae9e099362787a6104343f8a905ab7640265b98f626fc8d215ea",
+      "sourceType": "api-public",
+      "sourceUrl": "https://opencode.ai/zen/v1/models",
+      "checkedAt": "2026-10-21",
+      "claim": "recurring-free-access",
+      "verifiedBy": "OmniRoute maintainers",
+      "summary": "The public OpenCode Zen catalog lists mimo-v2.6-flash-free as a free-tier id (the `-free` tier is served without a paid plan) and no longer lists mimo-v2.5-free, which the upstream deprecated with `410 Model mimo-v2.5-free has been deprecated. Use mimo-v2.6-flash-free instead.` The free tier is the same one the OpenCode free-tier contract gates on the `-free` suffix.",
+      "limitations": "Free access depends on OpenCode's own free-tier policy and client contract (requests outside the OpenCode client contract are refused upstream), and no numeric monthly token allowance is published for this tier. This record does not establish unlimited capacity or billing protection."
+    },
     {
       "provider": "glm-cn",
       "modelId": "glm-4.7-flash",
