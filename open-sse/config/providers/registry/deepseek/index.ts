@@ -9,6 +9,9 @@ export const deepseekProvider: RegistryEntry = {
   authType: "apikey",
   defaultContextLength: 1_000_000,
   authHeader: "bearer",
+  // #17385: thinking-mode replay turns without reasoning_content 400 upstream; echo a plain
+  // " " placeholder (same registry flag as bai/#13599, never the #9573 sentinel).
+  requiresReasoningContentEcho: true,
   alternateFormats: [
     {
       format: "openai-responses",

@@ -4,6 +4,8 @@
  * cursor-agent often return wire id `default` only.
  */
 
+import { GROK_47_EFFORTS } from "@omniroute/open-sse/config/providers/registry/cursor/grok47.ts";
+
 export type CursorAutoCatalogEntry = {
   id: string;
   name: string;
@@ -26,8 +28,6 @@ const CURSOR_AUTO_ROUTER_VARIANT_NAMES: Record<
 };
 
 const CURSOR_ONE_MILLION_CONTEXT = 1_000_000;
-// Verified with grok-4.7 through AgentService/Run: each tier returned HTTP 200.
-const GROK_47_EFFORT_TIERS = ["low", "medium", "high", "xhigh", "max"] as const;
 const CURSOR_CONTEXT_EFFORT = "(?:low|medium|high|xhigh|max)";
 const CURSOR_ONE_MILLION_MODEL_PATTERNS = [
   new RegExp(`^claude-fable-5-1-thinking-${CURSOR_CONTEXT_EFFORT}$`),
@@ -66,8 +66,8 @@ export function ensureCursorGrokEffortAliases<
   if (!base) return models;
   const allowed =
     base.supportedThinkingEfforts === undefined
-      ? GROK_47_EFFORT_TIERS
-      : GROK_47_EFFORT_TIERS.filter((tier) => base.supportedThinkingEfforts?.includes(tier));
+      ? GROK_47_EFFORTS
+      : GROK_47_EFFORTS.filter((tier) => base.supportedThinkingEfforts?.includes(tier));
   const existing = new Set(models.map((model) => model.id));
   const out: T[] = [];
   for (const model of models) {

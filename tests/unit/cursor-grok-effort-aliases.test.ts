@@ -5,9 +5,9 @@ import { enrichCursorCatalog } from "../../src/lib/db/models/activeSyncedCatalog
 import { resolveRequestedModel } from "../../open-sse/utils/cursorAgentProtobuf.ts";
 
 const base = [
-  { id: "grok-4.7", name: "Grok 4.7", source: "imported" as const, inputTokenLimit: 200_000 },
+  { id: "grok-4.7", name: "Grok 4.7", source: "imported" as const, inputTokenLimit: 256_000 },
 ];
-const tiers = ["low", "medium", "high", "xhigh", "max"];
+const tiers = ["low", "medium", "high", "xhigh"];
 
 test("a live Grok 4.7 base exposes selectable verified effort aliases", () => {
   const catalog = enrichCursorCatalog("cursor", base);
@@ -16,7 +16,7 @@ test("a live Grok 4.7 base exposes selectable verified effort aliases", () => {
     aliases.map((model) => model.id),
     tiers.map((tier) => `grok-4.7-${tier}`)
   );
-  assert.ok(aliases.every((model) => model.inputTokenLimit === 200_000));
+  assert.ok(aliases.every((model) => model.inputTokenLimit === 256_000));
   assert.equal(catalog.filter((model) => model.id === "grok-4.7").length, 1);
 });
 
