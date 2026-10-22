@@ -41,7 +41,12 @@ export function recordCompressionCacheStats(args: {
         model: args.effectiveModel ?? "",
         compressionMode: args.mode,
         cacheControlPresent: cacheContext.hasCacheControl,
-        estimatedCacheHit: cacheContext.hasCacheControl && cacheContext.isCachingProvider,
+        // Eligibility estimate, not an observed hit: automatic-prefix providers (OpenAI,
+        // Codex, Azure) are counted as eligible on every request, since the provider
+        // populates its prefix cache without explicit cache_control markers.
+        estimatedCacheHit:
+          cacheContext.usesAutomaticPrefixCaching ||
+          (cacheContext.hasCacheControl && cacheContext.isCachingProvider),
         tokensSavedCompression,
         tokensSavedCaching: 0,
         netSavings: tokensSavedCompression,
